@@ -1,0 +1,10 @@
+java-graph2013
+=============================================
+Git repository for an open-source Java graph library
+started 12/13/2012
+This library currently includes relatively lightweight
+classes that avoid the overhead involved in insuring
+thread-safety.
+This is a rebuilt version of java-graph2012 using templates
+to keep the library as lightweight and flexible as possible.
+I plan to include thread-safe classes in a later version.
