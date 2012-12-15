@@ -11,20 +11,20 @@ import com.codemelon.graph.vertex.Vertex;
  * @my.created Dec 13, 2012
  * @my.edited Dec 13, 2012
  */
-public abstract class Graph<T extends Vertex> {
+public abstract class AbstractGraph<T extends Vertex> {
 	private static final int DEFAULT_INITIAL_CAPACITY = 16;
 	private Set<T> vertices;
 	/**
 	 * Initialize graph to a default initial capacity of 16 vertices
 	 */
-	public Graph() {
+	public AbstractGraph() {
 		this(DEFAULT_INITIAL_CAPACITY);
 	}
 	/**
 	 * Initialize graph to have capacity for the given number of vertices
 	 * @param initialCapacity expected number of vertices
 	 */
-	public Graph(int initialCapacity) {
+	public AbstractGraph(int initialCapacity) {
 		vertices = new HashSet<T>(initialCapacity);
 	}
 	/**
@@ -32,7 +32,7 @@ public abstract class Graph<T extends Vertex> {
 	 * @param vertices collection of vertices that will make up the initial vertices
 	 * of the graph
 	 */
-	public Graph(Collection<T> vertices) {
+	public AbstractGraph(Collection<T> vertices) {
 		this.vertices = new HashSet<T>(vertices);
 		for (T v : vertices) {
 			v.clearAdjacencies();

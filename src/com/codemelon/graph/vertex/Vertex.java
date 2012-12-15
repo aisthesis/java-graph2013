@@ -2,7 +2,7 @@ package com.codemelon.graph.vertex;
 
 import java.util.Set;
 
-import com.codemelon.graph.graph.Graph;
+import com.codemelon.graph.graph.AbstractGraph;
 
 /**
  * Basic specification which any Vertex class must implement
@@ -15,11 +15,11 @@ public interface Vertex {
 	 * Set the graph to which the vertex belongs
 	 * @param graph graph with which the vertex is to be associated
 	 */
-	public void setGraph(Graph<? extends Vertex> graph);/**
+	public void setGraph(AbstractGraph<? extends Vertex> graph);/**
 	 * Returns the graph to which the vertex belongs.
 	 * @return the graph to which the vertex belongs
 	 */
-	public Graph<? extends Vertex> getGraph();
+	public AbstractGraph<? extends Vertex> getGraph();
 	/**
 	 * Adds the specified vertex to the set of adjacencies. Note that this method
 	 * only adds a <em>directed</em> adjacency. If the vertex belongs to an

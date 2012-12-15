@@ -3,6 +3,7 @@ package com.codemelon.graph.vertex;
 import static org.junit.Assert.*;
 
 import java.util.HashMap;
+import java.util.Set;
 
 import org.junit.After;
 import org.junit.Before;
@@ -18,7 +19,6 @@ import com.codemelon.graph.graph.DirectedSimpleGraph;
 public class DirectedSimpleVertexTest {
 	private static final int VERTICES_IN_TEST_GRAPH = 10;
 	private HashMap<Integer, DirectedSimpleVertex> vertices;
-	private DirectedSimpleGraph graph;
 
 	/**
 	 * @throws java.lang.Exception
@@ -29,7 +29,7 @@ public class DirectedSimpleVertexTest {
 		for (int i = 0; i < VERTICES_IN_TEST_GRAPH; i++) {
 			vertices.put(i, new DirectedSimpleVertex());
 		}
-		graph = new DirectedSimpleGraph(vertices.values());
+		new DirectedSimpleGraph(vertices.values());
 		vertices.get(0).addAdjacency(vertices.get(1));
 	}
 
@@ -39,20 +39,19 @@ public class DirectedSimpleVertexTest {
 	@After
 	public void tearDown() {
 		vertices = null;
-		graph = null;
 	}
 	/**
 	 * Test method for {@link com.codemelon.graph.vertex.DirectedSimpleVertex#addAdjacency(T extends com.codemelon.graph.vertex.Vertex)}.
 	 */
 	@Test
 	public void testAddAdjacency() {
-		assertEquals("Graph has 1 adjacency", 1, graph.edgeCount());
-		assertTrue("Graph contains edge (0, 1)", graph.containsEdge(vertices.get(0), vertices.get(1)));
+		assertEquals("Vertex 0 has 1 adjacency", 1, vertices.get(0).adjacencyCount());
+		assertTrue("Vertex 0 contains adjacency to 1", vertices.get(0).containsAdjacency(vertices.get(1)));
 		for (int i = 0; i < VERTICES_IN_TEST_GRAPH; i++) {
 			for (int j = 0; j < VERTICES_IN_TEST_GRAPH; j++) {
 				if (i != 0 || j != 1) {
-					assertFalse("Graph doesn't contain edge (" + i + ", " + j + ")", 
-							graph.containsEdge(vertices.get(i), vertices.get(j)));
+					assertFalse("No adjacency from vertex " + i + " to vertex " + j, 
+							vertices.get(i).containsAdjacency(vertices.get(j)));
 				}
 			}
 		}
@@ -90,5 +89,18 @@ public class DirectedSimpleVertexTest {
 		vertices.get(0).clearAdjacencies();
 		assertEquals("0 adjacencies after clear() operation", 0, vertices.get(0).adjacencyCount());
 		assertFalse("Adjacency set is empty", vertices.get(0).hasAdjacencies());
+	}
+	/**
+	 * Test method for {@link com.codemelon.graph.vertex.DirectedSimpleVertex#getAdjacencies()}.
+	 */
+	@Test
+	public void testGetAdjacencies() {
+		Set<? extends Vertex> adjacencies = vertices.get(0).getAdjacencies();
+		assertTrue("Adjacency set for vertex 0 contains vertex 1", adjacencies.contains(vertices.get(1)));
+		assertEquals("Adjacency set for vertex 0 has size 1", 1, adjacencies.size());
+		for (int i = 1; i < VERTICES_IN_TEST_GRAPH; i++) {
+			assertTrue("Adjacency set for vertex " + i + " is empty", 
+					vertices.get(i).getAdjacencies().isEmpty());
+		}
 	}
 }

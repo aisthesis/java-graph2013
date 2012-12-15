@@ -85,7 +85,7 @@ public class DirectedSimpleGraphTest {
 	}
 
 	/**
-	 * Test method for {@link com.codemelon.graph.graph.Graph#removeVertex(com.codemelon.graph.vertex.Vertex)}.
+	 * Test method for {@link com.codemelon.graph.graph.AbstractGraph#removeVertex(com.codemelon.graph.vertex.Vertex)}.
 	 */
 	@Test
 	public void testRemoveVertex() {
@@ -95,7 +95,7 @@ public class DirectedSimpleGraphTest {
 	}
 
 	/**
-	 * Test method for {@link com.codemelon.graph.graph.Graph#vertexCount()}.
+	 * Test method for {@link com.codemelon.graph.graph.AbstractGraph#vertexCount()}.
 	 */
 	@Test
 	public void testVertexCount() {
@@ -104,7 +104,7 @@ public class DirectedSimpleGraphTest {
 	}
 
 	/**
-	 * Test method for {@link com.codemelon.graph.graph.Graph#getVertices()}.
+	 * Test method for {@link com.codemelon.graph.graph.AbstractGraph#getVertices()}.
 	 */
 	@Test
 	public void testGetVertices() {
@@ -115,7 +115,7 @@ public class DirectedSimpleGraphTest {
 	}
 
 	/**
-	 * Test method for {@link com.codemelon.graph.graph.Graph#vertexIterator()}.
+	 * Test method for {@link com.codemelon.graph.graph.AbstractGraph#vertexIterator()}.
 	 */
 	@Test
 	public void testVertexIterator() {
@@ -129,7 +129,7 @@ public class DirectedSimpleGraphTest {
 	}
 
 	/**
-	 * Test method for {@link com.codemelon.graph.graph.Graph#containsEdge(com.codemelon.graph.vertex.Vertex, com.codemelon.graph.vertex.Vertex)}.
+	 * Test method for {@link com.codemelon.graph.graph.AbstractGraph#containsEdge(com.codemelon.graph.vertex.Vertex, com.codemelon.graph.vertex.Vertex)}.
 	 */
 	@Test
 	public void testContainsEdge() {

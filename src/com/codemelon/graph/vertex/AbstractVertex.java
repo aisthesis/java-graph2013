@@ -1,6 +1,6 @@
 package com.codemelon.graph.vertex;
 
-import com.codemelon.graph.graph.Graph;
+import com.codemelon.graph.graph.AbstractGraph;
 
 /**
  * @author Marshall Farrier
@@ -8,7 +8,7 @@ import com.codemelon.graph.graph.Graph;
  * @my.edited Dec 13, 2012
  */
 public abstract class AbstractVertex implements Vertex {
-	private Graph<? extends Vertex> graph;
+	private AbstractGraph<? extends Vertex> graph;
 	/**
 	 * Default constructor creates a vertex belonging to no graph
 	 */
@@ -20,7 +20,7 @@ public abstract class AbstractVertex implements Vertex {
 	 * @see com.codemelon.graph.vertex.Vertex#setGraph(com.codemelon.graph.graph.Graph)
 	 */
 	@Override
-	public final void setGraph(Graph<? extends Vertex> graph) {
+	public final void setGraph(AbstractGraph<? extends Vertex> graph) {
 		this.graph = graph;
 	}
 
@@ -28,7 +28,7 @@ public abstract class AbstractVertex implements Vertex {
 	 * @see com.codemelon.graph.vertex.Vertex#getGraph()
 	 */
 	@Override
-	public final Graph<? extends Vertex> getGraph() {
+	public final AbstractGraph<? extends Vertex> getGraph() {
 		return graph;
 	}
 	/**
