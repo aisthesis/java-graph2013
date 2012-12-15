@@ -22,9 +22,6 @@ public class DirectedSimpleGraphTest {
 	private HashMap<Integer, DirectedSimpleVertex> vertices;
 	private DirectedSimpleGraph graph;
 
-	/**
-	 * @throws java.lang.Exception
-	 */
 	@Before
 	public void setUp() {
 		vertices = new HashMap<Integer, DirectedSimpleVertex>(VERTICES_IN_TEST_GRAPH);
@@ -35,9 +32,6 @@ public class DirectedSimpleGraphTest {
 		vertices.get(0).addAdjacency(vertices.get(1));
 	}
 
-	/**
-	 * @throws java.lang.Exception
-	 */
 	@After
 	public void tearDown() {
 		vertices = null;
@@ -66,6 +60,7 @@ public class DirectedSimpleGraphTest {
 		assertTrue("Vertex u in graph", graph.containsVertex(u));
 		assertTrue("Vertex v in graph", graph.containsVertex(v));
 		assertTrue("Graph contains edge (u, v)", graph.containsEdge(u, v));
+		assertFalse("Graph contains edge (v, u)", graph.containsEdge(v, u));
 	}
 
 	/**
@@ -82,6 +77,7 @@ public class DirectedSimpleGraphTest {
 		assertTrue("Vertex u in graph", graph.containsVertex(u));
 		assertTrue("Vertex v in graph", graph.containsVertex(v));
 		assertTrue("Graph contains edge (u, v)", graph.containsEdge(u, v));
+		assertFalse("Graph contains edge (v, u)", graph.containsEdge(v, u));
 	}
 
 	/**
