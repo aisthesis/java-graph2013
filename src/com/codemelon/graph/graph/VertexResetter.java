@@ -36,7 +36,7 @@ public class VertexResetter {
 	/**
 	 * Reset the color of all vertices in the graph to the given value.
 	 * @param graph graph whose vertices are to be reset
-	 * @param distance value to which the color of all vertices is to be reset
+	 * @param color value to which the color of all vertices is to be reset
 	 */
 	public static void resetColors(AbstractGraph<? extends ColoredVertex> graph, Color color) {
 		Iterator<? extends ColoredVertex> it = graph.vertexIterator();
