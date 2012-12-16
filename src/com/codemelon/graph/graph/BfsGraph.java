@@ -36,7 +36,7 @@ public class BfsGraph<T extends UndirectedSimpleVertex & BfsVertex> extends Abst
 	}
 
 	@Override
-	public int edgeCount() {
+	public final int edgeCount() {
 		int result = 0;
 		Iterator<T> it = super.vertexIterator();
 		while (it.hasNext()) {
