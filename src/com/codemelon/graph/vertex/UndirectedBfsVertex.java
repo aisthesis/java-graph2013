@@ -26,9 +26,6 @@ public class UndirectedBfsVertex extends UndirectedSimpleVertex implements
 	 */
 	@Override
 	public void setParent(ChildVertex parent) {
-		if (this.getGraph() == null || this.getGraph() != parent.getGraph()) {
-			throw new IllegalArgumentException("Parent must belong to the same graph!");
-		}
 		this.parent = parent;
 	}
 
