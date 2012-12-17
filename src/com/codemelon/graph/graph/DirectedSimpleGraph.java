@@ -10,7 +10,7 @@ import com.codemelon.graph.vertex.DirectedSimpleVertex;
  * @my.created Dec 14, 2012
  * @my.edited Dec 14, 2012
  */
-public class DirectedSimpleGraph extends AbstractGraph<DirectedSimpleVertex> {
+public class DirectedSimpleGraph<T extends DirectedSimpleVertex> extends AbstractGraph<T> {
 	/**
 	 * Initialize graph to a default initial capacity of 16 vertices
 	 */
@@ -29,7 +29,7 @@ public class DirectedSimpleGraph extends AbstractGraph<DirectedSimpleVertex> {
 	 * @param vertices collection of vertices that will make up the initial vertices
 	 * of the graph
 	 */
-	public DirectedSimpleGraph(Collection<DirectedSimpleVertex> vertices) {
+	public DirectedSimpleGraph(Collection<T> vertices) {
 		super(vertices);
 	}
 
@@ -39,7 +39,7 @@ public class DirectedSimpleGraph extends AbstractGraph<DirectedSimpleVertex> {
 	@Override
 	public final int edgeCount() {
 		int result = 0;
-		Iterator<DirectedSimpleVertex> it = super.vertexIterator();
+		Iterator<T> it = super.vertexIterator();
 		while (it.hasNext()) {
 			result += it.next().adjacencyCount();
 		}

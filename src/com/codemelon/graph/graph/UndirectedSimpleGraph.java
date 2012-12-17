@@ -10,7 +10,8 @@ import com.codemelon.graph.vertex.UndirectedSimpleVertex;
  * @my.created Dec 14, 2012
  * @my.edited Dec 14, 2012
  */
-public class UndirectedSimpleGraph extends AbstractGraph<UndirectedSimpleVertex> {
+public class UndirectedSimpleGraph<T extends UndirectedSimpleVertex> extends 
+		AbstractGraph<T> {
 	/**
 	 * Initialize graph to a default initial capacity of 16 vertices
 	 */
@@ -29,7 +30,7 @@ public class UndirectedSimpleGraph extends AbstractGraph<UndirectedSimpleVertex>
 	 * @param vertices collection of vertices that will make up the initial vertices
 	 * of the graph
 	 */
-	public UndirectedSimpleGraph(Collection<UndirectedSimpleVertex> vertices) {
+	public UndirectedSimpleGraph(Collection<T> vertices) {
 		super(vertices);
 	}
 
@@ -39,7 +40,7 @@ public class UndirectedSimpleGraph extends AbstractGraph<UndirectedSimpleVertex>
 	@Override
 	public final int edgeCount() {
 		int result = 0;
-		Iterator<UndirectedSimpleVertex> it = super.vertexIterator();
+		Iterator<T> it = super.vertexIterator();
 		while (it.hasNext()) {
 			result += it.next().adjacencyCount();
 		}

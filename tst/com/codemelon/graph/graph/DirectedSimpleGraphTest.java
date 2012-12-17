@@ -20,7 +20,7 @@ import com.codemelon.graph.vertex.DirectedSimpleVertex;
 public class DirectedSimpleGraphTest {
 	private static final int VERTICES_IN_TEST_GRAPH = 1000;
 	private HashMap<Integer, DirectedSimpleVertex> vertices;
-	private DirectedSimpleGraph graph;
+	private DirectedSimpleGraph<DirectedSimpleVertex> graph;
 
 	@Before
 	public void setUp() {
@@ -28,7 +28,7 @@ public class DirectedSimpleGraphTest {
 		for (int i = 0; i < VERTICES_IN_TEST_GRAPH; i++) {
 			vertices.put(i, new DirectedSimpleVertex());
 		}
-		graph = new DirectedSimpleGraph(vertices.values());
+		graph = new DirectedSimpleGraph<DirectedSimpleVertex>(vertices.values());
 		vertices.get(0).addAdjacency(vertices.get(1));
 	}
 
@@ -51,7 +51,7 @@ public class DirectedSimpleGraphTest {
 	 */
 	@Test
 	public void testDirectedSimpleGraph() {
-		graph = new DirectedSimpleGraph();
+		graph = new DirectedSimpleGraph<DirectedSimpleVertex>();
 		DirectedSimpleVertex u = new DirectedSimpleVertex();
 		DirectedSimpleVertex v = new DirectedSimpleVertex();
 		graph.addVertex(u);
@@ -68,7 +68,7 @@ public class DirectedSimpleGraphTest {
 	 */
 	@Test
 	public void testDirectedSimpleGraphInt() {
-		graph = new DirectedSimpleGraph(12);
+		graph = new DirectedSimpleGraph<DirectedSimpleVertex>(12);
 		DirectedSimpleVertex u = new DirectedSimpleVertex();
 		DirectedSimpleVertex v = new DirectedSimpleVertex();
 		graph.addVertex(u);

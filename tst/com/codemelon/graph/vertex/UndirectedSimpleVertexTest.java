@@ -27,7 +27,7 @@ public class UndirectedSimpleVertexTest {
 		for (int i = 0; i < VERTICES_IN_TEST_GRAPH; i++) {
 			vertices.put(i, new UndirectedSimpleVertex());
 		}
-		new UndirectedSimpleGraph(vertices.values());
+		new UndirectedSimpleGraph<UndirectedSimpleVertex>(vertices.values());
 		vertices.get(0).addAdjacency(vertices.get(1));
 	}
 

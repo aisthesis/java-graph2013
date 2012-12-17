@@ -13,7 +13,7 @@ import com.codemelon.graph.vertex.UndirectedSimpleVertex;
 public class UndirectedSimpleGraphTest {
 	private static final int VERTICES_IN_TEST_GRAPH = 1000;
 	private HashMap<Integer, UndirectedSimpleVertex> vertices;
-	private UndirectedSimpleGraph graph;
+	private UndirectedSimpleGraph<UndirectedSimpleVertex> graph;
 	
 	@Before
 	public void setUp() {
@@ -21,7 +21,7 @@ public class UndirectedSimpleGraphTest {
 		for (int i = 0; i < VERTICES_IN_TEST_GRAPH; i++) {
 			vertices.put(i, new UndirectedSimpleVertex());
 		}
-		graph = new UndirectedSimpleGraph(vertices.values());
+		graph = new UndirectedSimpleGraph<UndirectedSimpleVertex>(vertices.values());
 		vertices.get(0).addAdjacency(vertices.get(1));
 	}
 
@@ -43,7 +43,7 @@ public class UndirectedSimpleGraphTest {
 	 */
 	@Test
 	public void testUndirectedSimpleGraph() {
-		graph = new UndirectedSimpleGraph();
+		graph = new UndirectedSimpleGraph<UndirectedSimpleVertex>();
 		UndirectedSimpleVertex u = new UndirectedSimpleVertex();
 		UndirectedSimpleVertex v = new UndirectedSimpleVertex();
 		graph.addVertex(u);
@@ -60,7 +60,7 @@ public class UndirectedSimpleGraphTest {
 	 */
 	@Test
 	public void testUndirectedSimpleGraphInt() {
-		graph = new UndirectedSimpleGraph(12);
+		graph = new UndirectedSimpleGraph<UndirectedSimpleVertex>(12);
 		UndirectedSimpleVertex u = new UndirectedSimpleVertex();
 		UndirectedSimpleVertex v = new UndirectedSimpleVertex();
 		graph.addVertex(u);

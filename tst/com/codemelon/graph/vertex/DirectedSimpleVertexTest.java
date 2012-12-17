@@ -26,7 +26,7 @@ public class DirectedSimpleVertexTest {
 		for (int i = 0; i < VERTICES_IN_TEST_GRAPH; i++) {
 			vertices.put(i, new DirectedSimpleVertex());
 		}
-		new DirectedSimpleGraph(vertices.values());
+		new DirectedSimpleGraph<DirectedSimpleVertex>(vertices.values());
 		vertices.get(0).addAdjacency(vertices.get(1));
 	}
 	@After
