@@ -13,6 +13,7 @@ import com.codemelon.graph.edge.EdgeType;
 import com.codemelon.graph.edge.DfsEdgeData;
 import com.codemelon.graph.graph.DfsGraph;
 import com.codemelon.graph.vertex.DirectedDfsVertex;
+import com.codemelon.graph.vertex.VisitedVertex;
 
 /**
  * @author Marshall Farrier
@@ -55,7 +56,7 @@ public class DepthFirstSearchTest {
 		//vertex first discovered will be vertex last finished in this case
 		int indexOfFirstDiscovery = -1;
 		for (int i = 0; i < CIRCULAR_GRAPH_SIZE; i++) {
-			if (vertices.get(i).getDiscoveryTime() == DepthFirstSearch.FIRST_DISCOVERY_TIME) {
+			if (vertices.get(i).getDiscoveryTime() == VisitedVertex.FIRST_DISCOVERY_TIME) {
 				indexOfFirstDiscovery = i;
 			}
 			else if (i > 0) {
@@ -64,7 +65,7 @@ public class DepthFirstSearchTest {
 			}
 		}
 		assertEquals("Vertex first discovered has last finish time", 
-				CIRCULAR_GRAPH_SIZE * 2 - 1 + DepthFirstSearch.FIRST_DISCOVERY_TIME, 
+				CIRCULAR_GRAPH_SIZE * 2 - 1 + VisitedVertex.FIRST_DISCOVERY_TIME, 
 				vertices.get(indexOfFirstDiscovery).getFinishTime());
 		int indexOfLastDiscovery = (indexOfFirstDiscovery == 
 				0 ? CIRCULAR_GRAPH_SIZE - 1 : indexOfFirstDiscovery - 1);

@@ -7,6 +7,7 @@ import com.codemelon.graph.vertex.BfsVertex;
 import com.codemelon.graph.vertex.ChildVertex;
 import com.codemelon.graph.vertex.DfsVertex;
 import com.codemelon.graph.vertex.DistanceVertex;
+import com.codemelon.graph.vertex.OrderedDfsVertex;
 import com.codemelon.graph.vertex.VertexConstants;
 import com.codemelon.graph.vertex.ColoredVertex;
 import com.codemelon.graph.vertex.VisitedVertex;
@@ -19,7 +20,16 @@ import com.codemelon.graph.vertex.VisitedVertex;
  */
 public class VertexResetter {
 	/**
-	 * Reset the vertex properties used in breadth-first search
+	 * Reset the vertex properties used in ordered depth-first search
+	 * @param graph graph whose vertices are to be reset
+	 */
+	public static void resetForOrderedDfs(AbstractGraph<? extends OrderedDfsVertex> graph) {
+		resetColors(graph);
+		resetDiscoveryTimes(graph);
+		resetFinishTimes(graph);	
+	}
+	/**
+	 * Reset the vertex properties used in depth-first search
 	 * @param graph graph whose vertices are to be reset
 	 */
 	public static void resetForDfs(AbstractGraph<? extends DfsVertex> graph) {

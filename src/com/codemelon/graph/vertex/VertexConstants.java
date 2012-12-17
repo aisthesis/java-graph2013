@@ -9,5 +9,7 @@ public class VertexConstants {
 	public static final int DEFAULT_DISTANCE = -1;
 	public static final int DEFAULT_DISCOVERY_TIME = -1;
 	public static final int DEFAULT_FINISH_TIME = -1;
+	public static final int DEFAULT_SEARCH_ORDER_VALUE = -1;
+	public static final int DEFAULT_COMPONENT = -1;
 	private VertexConstants() {}
 }
