@@ -7,4 +7,8 @@ classes that avoid the overhead involved in insuring
 thread-safety.
 This is a rebuilt version of java-graph2012 using templates
 to keep the library as lightweight and flexible as possible.
+The main goal in this implementation is generality: Each algorithm
+should be runnable on any graph that supports the required parameters
+(not just specific implementations of graph types having these
+parameters).
 I plan to include thread-safe classes in a later version.
