@@ -8,8 +8,8 @@ import com.codemelon.graph.vertex.DirectedEdgeDataVertex;
 
 /**
  * Directed graph that supports edge data. The type parameter T is the type of the edge
- * data object, and U is an object containing a factory method for creating objects
- * of type T.
+ * data object, U provides a factory method for creating objects, and V is a vertex type
+ * supporting edge data of type T.
  * @author Marshall Farrier
  * @my.created Dec 16, 2012
  * @my.edited Dec 16, 2012
