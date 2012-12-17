@@ -9,6 +9,10 @@ package com.codemelon.graph.vertex;
  */
 public interface VisitedVertex extends Vertex {
 	/**
+	 * The discovery time shown for the vertex first visited in the search
+	 */
+	public static final int FIRST_DISCOVERY_TIME = 0;
+	/**
 	 * Set the time at which the vertex was discovered
 	 * @param discoveryTime value to which to set the discovery time
 	 */

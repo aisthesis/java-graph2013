@@ -23,11 +23,6 @@ import com.codemelon.graph.graph.VertexResetter;
  * @my.edited Dec 16, 2012
  */
 public class DepthFirstSearch<T extends DfsVertex> {
-	/**
-	 * The discovery time shown for the vertex first visited in the search
-	 */
-	public static final int FIRST_DISCOVERY_TIME = 0;
-	
 	private AbstractGraph<T> graph;
 	private int t;	// time in CLRS
 	private boolean isAcyclic;
@@ -59,7 +54,7 @@ public class DepthFirstSearch<T extends DfsVertex> {
 	 */
 	public boolean search() {
 		VertexResetter.resetForDfs(graph);
-		t = FIRST_DISCOVERY_TIME - 1;	// first discovery time will be FIRST_DISCOVERY_TIME
+		t = VisitedVertex.FIRST_DISCOVERY_TIME - 1;	// first discovery time will be FIRST_DISCOVERY_TIME
 		Iterator<T> it = graph.vertexIterator();
 		DfsVertex u;
 		while (it.hasNext()) {
