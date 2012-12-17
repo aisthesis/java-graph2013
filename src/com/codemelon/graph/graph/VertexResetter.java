@@ -3,10 +3,13 @@ package com.codemelon.graph.graph;
 import java.util.Iterator;
 
 import com.codemelon.graph.common.Color;
+import com.codemelon.graph.vertex.BfsVertex;
 import com.codemelon.graph.vertex.ChildVertex;
+import com.codemelon.graph.vertex.DfsVertex;
 import com.codemelon.graph.vertex.DistanceVertex;
 import com.codemelon.graph.vertex.VertexConstants;
 import com.codemelon.graph.vertex.ColoredVertex;
+import com.codemelon.graph.vertex.VisitedVertex;
 
 /**
  * Static methods for resetting all vertices in a graph
@@ -19,8 +22,17 @@ public class VertexResetter {
 	 * Reset the vertex properties used in breadth-first search
 	 * @param graph graph whose vertices are to be reset
 	 */
-	public static <T extends ColoredVertex & ChildVertex & DistanceVertex> 
-			void resetForBfs(AbstractGraph<T> graph) {
+	public static void resetForDfs(AbstractGraph<? extends DfsVertex> graph) {
+		resetColors(graph);
+		resetParents(graph);
+		resetDiscoveryTimes(graph);
+		resetFinishTimes(graph);	
+	}
+	/**
+	 * Reset the vertex properties used in breadth-first search
+	 * @param graph graph whose vertices are to be reset
+	 */
+	public static void resetForBfs(AbstractGraph<? extends BfsVertex> graph) {
 		resetColors(graph);
 		resetParents(graph);
 		resetDistances(graph);		
@@ -71,6 +83,42 @@ public class VertexResetter {
 		while (it.hasNext()) {
 			it.next().setParent(null);
 		}
+	}
+	/**
+	 * Reset the discovery time of all vertices in the graph to the default value
+	 * @param graph graph whose vertices are to be reset
+	 */
+	public static void resetDiscoveryTimes(AbstractGraph<? extends VisitedVertex> graph) {
+		resetDiscoveryTimes(graph, VertexConstants.DEFAULT_DISCOVERY_TIME);
+	}
+	/**
+	 * Reset the discovery time of all vertices in the graph to the given value.
+	 * @param graph graph graph whose vertices are to be reset
+	 * @param discoveryTime value to which the discovery time of all vertices in the graph is to be reset
+	 */
+	public static void resetDiscoveryTimes(AbstractGraph<? extends VisitedVertex> graph, int discoveryTime) {
+		Iterator<? extends VisitedVertex> it = graph.vertexIterator();
+		while (it.hasNext()) {
+			it.next().setDiscoveryTime(discoveryTime);
+		}		
+	}
+	/**
+	 * Reset the finish time of all vertices in the graph to the default value
+	 * @param graph graph whose vertices are to be reset
+	 */
+	public static void resetFinishTimes(AbstractGraph<? extends VisitedVertex> graph) {
+		resetFinishTimes(graph, VertexConstants.DEFAULT_FINISH_TIME);
+	}
+	/**
+	 * Reset the finish time of all vertices in the graph to the given value.
+	 * @param graph graph graph whose vertices are to be reset
+	 * @param finishTime value to which the finish time of all vertices in the graph is to be reset
+	 */
+	public static void resetFinishTimes(AbstractGraph<? extends VisitedVertex> graph, int finishTime) {
+		Iterator<? extends VisitedVertex> it = graph.vertexIterator();
+		while (it.hasNext()) {
+			it.next().setDiscoveryTime(finishTime);
+		}		
 	}
 	private VertexResetter() {}
 }

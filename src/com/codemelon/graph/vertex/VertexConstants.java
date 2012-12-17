@@ -7,5 +7,7 @@ package com.codemelon.graph.vertex;
  */
 public class VertexConstants {
 	public static final int DEFAULT_DISTANCE = -1;
+	public static final int DEFAULT_DISCOVERY_TIME = -1;
+	public static final int DEFAULT_FINISH_TIME = -1;
 	private VertexConstants() {}
 }
