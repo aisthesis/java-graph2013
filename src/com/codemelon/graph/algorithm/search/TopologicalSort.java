@@ -44,7 +44,7 @@ public class TopologicalSort<T extends ColoredVertex> {
 	 * That is, for any 2 distinct vertices u and v, if the graph contains the edge
 	 * (u, v) and if the graph doesn't contain a cycle, then u precedes v in the list.
 	 * If the graph contains a cycle, the list will be meaningless.
-	 * @return
+	 * @return a linked list of vertices in topologically sorted order
 	 */
 	public LinkedList<ColoredVertex> getSortedVertices() {
 		return orderedVertices;
