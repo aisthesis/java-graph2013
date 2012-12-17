@@ -10,28 +10,30 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.codemelon.graph.vertex.DirectedSimpleVertex;
+import com.codemelon.graph.edge.DfsEdgeData;
+import com.codemelon.graph.vertex.DirectedEdgeDataVertex;
 
 /**
  * @author Marshall Farrier
- * @my.created Dec 14, 2012
- * @my.edited Dec 14, 2012
+ * @my.created Dec 16, 2012
+ * @my.edited Dec 16, 2012
  */
-public class DirectedSimpleGraphTest {
+public class DirectedEdgeDataGraphTest {
 	private static final int VERTICES_IN_TEST_GRAPH = 1000;
-	private HashMap<Integer, DirectedSimpleVertex> vertices;
-	private DirectedSimpleGraph graph;
-
+	private HashMap<Integer, DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>> vertices;
+	private DirectedEdgeDataGraph<DfsEdgeData, DfsEdgeData.Factory> graph;
+	
 	@Before
 	public void setUp() {
-		vertices = new HashMap<Integer, DirectedSimpleVertex>(VERTICES_IN_TEST_GRAPH);
+		vertices = new HashMap<Integer, 
+				DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>>(VERTICES_IN_TEST_GRAPH);
 		for (int i = 0; i < VERTICES_IN_TEST_GRAPH; i++) {
-			vertices.put(i, new DirectedSimpleVertex());
+			vertices.put(i, new DirectedEdgeDataVertex<DfsEdgeData, 
+					DfsEdgeData.Factory>(DfsEdgeData.Factory.INSTANCE));
 		}
-		graph = new DirectedSimpleGraph(vertices.values());
+		graph = new DirectedEdgeDataGraph<DfsEdgeData, DfsEdgeData.Factory>(vertices.values());
 		vertices.get(0).addAdjacency(vertices.get(1));
 	}
-
 	@After
 	public void tearDown() {
 		vertices = null;
@@ -39,7 +41,7 @@ public class DirectedSimpleGraphTest {
 	}
 
 	/**
-	 * Test method for {@link com.codemelon.graph.graph.DirectedSimpleGraph#edgeCount()}.
+	 * Test method for {@link com.codemelon.graph.graph.DirectedEdgeDataGraph#edgeCount()}.
 	 */
 	@Test
 	public void testEdgeCount() {
@@ -47,13 +49,15 @@ public class DirectedSimpleGraphTest {
 	}
 
 	/**
-	 * Test method for {@link com.codemelon.graph.graph.DirectedSimpleGraph#DirectedSimpleGraph()}.
+	 * Test method for {@link com.codemelon.graph.graph.DirectedEdgeDataGraph#DirectedEdgeDataGraph()}.
 	 */
 	@Test
-	public void testDirectedSimpleGraph() {
-		graph = new DirectedSimpleGraph();
-		DirectedSimpleVertex u = new DirectedSimpleVertex();
-		DirectedSimpleVertex v = new DirectedSimpleVertex();
+	public void testDirectedEdgeDataGraph() {
+		graph = new DirectedEdgeDataGraph<DfsEdgeData, DfsEdgeData.Factory>();
+		DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory> u = 
+				new DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>(DfsEdgeData.Factory.INSTANCE);
+		DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory> v = 
+				new DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>(DfsEdgeData.Factory.INSTANCE);
 		graph.addVertex(u);
 		graph.addVertex(v);
 		u.addAdjacency(v);
@@ -64,13 +68,15 @@ public class DirectedSimpleGraphTest {
 	}
 
 	/**
-	 * Test method for {@link com.codemelon.graph.graph.DirectedSimpleGraph#DirectedSimpleGraph(int)}.
+	 * Test method for {@link com.codemelon.graph.graph.DirectedEdgeDataGraph#DirectedEdgeDataGraph(int)}.
 	 */
 	@Test
-	public void testDirectedSimpleGraphInt() {
-		graph = new DirectedSimpleGraph(12);
-		DirectedSimpleVertex u = new DirectedSimpleVertex();
-		DirectedSimpleVertex v = new DirectedSimpleVertex();
+	public void testDirectedEdgeDataGraphInt() {
+		graph = new DirectedEdgeDataGraph<DfsEdgeData, DfsEdgeData.Factory>(12);
+		DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory> u = 
+				new DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>(DfsEdgeData.Factory.INSTANCE);
+		DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory> v = 
+				new DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>(DfsEdgeData.Factory.INSTANCE);
 		graph.addVertex(u);
 		graph.addVertex(v);
 		u.addAdjacency(v);
@@ -104,7 +110,7 @@ public class DirectedSimpleGraphTest {
 	 */
 	@Test
 	public void testGetVertices() {
-		Set<DirectedSimpleVertex> vertexSet = graph.getVertices();
+		Set<DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>> vertexSet = graph.getVertices();
 		for (int i = 0; i < VERTICES_IN_TEST_GRAPH; i++) {
 			assertTrue("Vertex contained in set", vertexSet.contains(vertices.get(i)));
 		}
@@ -115,7 +121,7 @@ public class DirectedSimpleGraphTest {
 	 */
 	@Test
 	public void testVertexIterator() {
-		Iterator<DirectedSimpleVertex> it = graph.vertexIterator();
+		Iterator<DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>> it = graph.vertexIterator();
 		while (it.hasNext()) {
 			if (it.next() == vertices.get(0)) {
 				return;
@@ -131,5 +137,8 @@ public class DirectedSimpleGraphTest {
 	public void testContainsEdge() {
 		assertTrue("Graph contains edge (0, 1)", graph.containsEdge(vertices.get(0), 
 				vertices.get(1)));
+		assertFalse("Graph doesn't contain edge (1, 0)", graph.containsEdge(vertices.get(1), 
+				vertices.get(0)));
 	}
+
 }
