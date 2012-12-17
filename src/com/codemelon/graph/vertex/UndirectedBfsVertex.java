@@ -68,5 +68,4 @@ public class UndirectedBfsVertex extends UndirectedSimpleVertex implements
 	public int getDistance() {
 		return distance;
 	}
-
 }
