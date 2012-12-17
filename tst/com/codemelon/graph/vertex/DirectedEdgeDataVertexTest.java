@@ -30,7 +30,8 @@ public class DirectedEdgeDataVertexTest {
 			vertices.put(i, new DirectedEdgeDataVertex<DfsEdgeData, 
 					DfsEdgeData.Factory>(DfsEdgeData.Factory.INSTANCE));
 		}
-		new DirectedEdgeDataGraph<DfsEdgeData, DfsEdgeData.Factory>(vertices.values());
+		new DirectedEdgeDataGraph<DfsEdgeData, DfsEdgeData.Factory, 
+				DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>>(vertices.values());
 		vertices.get(0).addAdjacency(vertices.get(1));
 	}
 	@After

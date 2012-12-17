@@ -21,7 +21,8 @@ import com.codemelon.graph.vertex.DirectedEdgeDataVertex;
 public class DirectedEdgeDataGraphTest {
 	private static final int VERTICES_IN_TEST_GRAPH = 1000;
 	private HashMap<Integer, DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>> vertices;
-	private DirectedEdgeDataGraph<DfsEdgeData, DfsEdgeData.Factory> graph;
+	private DirectedEdgeDataGraph<DfsEdgeData, DfsEdgeData.Factory, 
+			DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>> graph;
 	
 	@Before
 	public void setUp() {
@@ -31,7 +32,8 @@ public class DirectedEdgeDataGraphTest {
 			vertices.put(i, new DirectedEdgeDataVertex<DfsEdgeData, 
 					DfsEdgeData.Factory>(DfsEdgeData.Factory.INSTANCE));
 		}
-		graph = new DirectedEdgeDataGraph<DfsEdgeData, DfsEdgeData.Factory>(vertices.values());
+		graph = new DirectedEdgeDataGraph<DfsEdgeData, DfsEdgeData.Factory, 
+				DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>>(vertices.values());
 		vertices.get(0).addAdjacency(vertices.get(1));
 	}
 	@After
@@ -53,7 +55,8 @@ public class DirectedEdgeDataGraphTest {
 	 */
 	@Test
 	public void testDirectedEdgeDataGraph() {
-		graph = new DirectedEdgeDataGraph<DfsEdgeData, DfsEdgeData.Factory>();
+		graph = new DirectedEdgeDataGraph<DfsEdgeData, DfsEdgeData.Factory, 
+				DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>>();
 		DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory> u = 
 				new DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>(DfsEdgeData.Factory.INSTANCE);
 		DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory> v = 
@@ -72,7 +75,8 @@ public class DirectedEdgeDataGraphTest {
 	 */
 	@Test
 	public void testDirectedEdgeDataGraphInt() {
-		graph = new DirectedEdgeDataGraph<DfsEdgeData, DfsEdgeData.Factory>(12);
+		graph = new DirectedEdgeDataGraph<DfsEdgeData, DfsEdgeData.Factory, 
+				DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>>(12);
 		DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory> u = 
 				new DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>(DfsEdgeData.Factory.INSTANCE);
 		DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory> v = 

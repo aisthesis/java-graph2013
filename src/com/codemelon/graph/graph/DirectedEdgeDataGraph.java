@@ -14,8 +14,8 @@ import com.codemelon.graph.vertex.DirectedEdgeDataVertex;
  * @my.created Dec 16, 2012
  * @my.edited Dec 16, 2012
  */
-public class DirectedEdgeDataGraph<T, U extends EdgeDataFactory<T>> 
-		extends AbstractGraph<DirectedEdgeDataVertex<T, U>> {
+public class DirectedEdgeDataGraph<T, U extends EdgeDataFactory<T>, V extends DirectedEdgeDataVertex<T, U>> 
+		extends AbstractGraph<V> {
 	/**
 	 * Initialize graph to a default initial capacity of 16 vertices
 	 */
@@ -34,7 +34,7 @@ public class DirectedEdgeDataGraph<T, U extends EdgeDataFactory<T>>
 	 * @param vertices collection of vertices that will make up the initial vertices
 	 * of the graph
 	 */
-	public DirectedEdgeDataGraph(Collection<DirectedEdgeDataVertex<T, U>> vertices) {
+	public DirectedEdgeDataGraph(Collection<V> vertices) {
 		super(vertices);
 	}
 
@@ -44,7 +44,7 @@ public class DirectedEdgeDataGraph<T, U extends EdgeDataFactory<T>>
 	@Override
 	public int edgeCount() {
 		int result = 0;
-		Iterator<DirectedEdgeDataVertex<T, U>> it = super.vertexIterator();
+		Iterator<V> it = super.vertexIterator();
 		while (it.hasNext()) {
 			result += it.next().adjacencyCount();
 		}
