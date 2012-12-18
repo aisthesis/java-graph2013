@@ -1,6 +1,7 @@
 package com.codemelon.graph.vertex;
 
 /**
+ * Simple vertex class supporting ordered depth-first search.
  * @author Marshall Farrier
  * @my.created Dec 17, 2012
  * @my.edited Dec 17, 2012
