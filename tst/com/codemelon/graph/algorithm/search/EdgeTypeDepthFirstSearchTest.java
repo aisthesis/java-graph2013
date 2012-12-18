@@ -20,7 +20,7 @@ import com.codemelon.graph.vertex.VisitedVertex;
  * @my.created Dec 16, 2012
  * @my.edited Dec 16, 2012
  */
-public class DepthFirstSearchTest {
+public class EdgeTypeDepthFirstSearchTest {
 	private DfsGraph<DfsEdgeData, DfsEdgeData.Factory> graph;
 	private static final int CIRCULAR_GRAPH_SIZE = 1000;
 	
@@ -30,13 +30,13 @@ public class DepthFirstSearchTest {
 	}
 
 	/**
-	 * Test method for {@link com.codemelon.graph.algorithm.search.DepthFirstSearch#search()}.
+	 * Test method for {@link com.codemelon.graph.algorithm.search.EdgeTypeDepthFirstSearch#search()}.
 	 */
 	@Test
 	public void testSmallCLRSGraph() {
 		HashMap<Character, DirectedDfsVertex<DfsEdgeData, DfsEdgeData.Factory>> vertices = 
 				setUpSmallCLRSGraph();
-		assertFalse("Graph contains a cycle", new DepthFirstSearch<DirectedDfsVertex<DfsEdgeData, 
+		assertFalse("Graph contains a cycle", new EdgeTypeDepthFirstSearch<DirectedDfsVertex<DfsEdgeData, 
 				DfsEdgeData.Factory>>(graph).search());
 		// all vertices are black
 		for (char i = 'u'; i <= 'z'; i++) {
@@ -46,12 +46,12 @@ public class DepthFirstSearchTest {
 		}
 	}
 	/**
-	 * Test method for {@link com.codemelon.graph.algorithm.search.DepthFirstSearch#search()}.
+	 * Test method for {@link com.codemelon.graph.algorithm.search.EdgeTypeDepthFirstSearch#search()}.
 	 */
 	@Test
 	public void testBiggerCircularGraph() {
 		ArrayList<DirectedDfsVertex<DfsEdgeData, DfsEdgeData.Factory>> vertices = setUpBiggerCircularGraph();
-		assertFalse("Graph is not acyclic", new DepthFirstSearch<DirectedDfsVertex<DfsEdgeData, 
+		assertFalse("Graph is not acyclic", new EdgeTypeDepthFirstSearch<DirectedDfsVertex<DfsEdgeData, 
 				DfsEdgeData.Factory>>(graph).search());		
 		//vertex first discovered will be vertex last finished in this case
 		int indexOfFirstDiscovery = -1;
@@ -73,14 +73,14 @@ public class DepthFirstSearchTest {
 				vertices.get(indexOfLastDiscovery).getEdgeType(vertices.get(indexOfFirstDiscovery)));
 	}
 	/**
-	 * Test method for {@link com.codemelon.graph.algorithm.search.DepthFirstSearch#search()}.
+	 * Test method for {@link com.codemelon.graph.algorithm.search.EdgeTypeDepthFirstSearch#search()}.
 	 */
 	@Test
 	public void testAcyclicGraph() {
 		ArrayList<DirectedDfsVertex<DfsEdgeData, DfsEdgeData.Factory>> vertices = setUpBiggerCircularGraph();
 		// break the cycle by clearing 1 adjacency list
 		vertices.get(0).clearAdjacencies();
-		assertTrue("Graph is acyclic", new DepthFirstSearch<DirectedDfsVertex<DfsEdgeData, 
+		assertTrue("Graph is acyclic", new EdgeTypeDepthFirstSearch<DirectedDfsVertex<DfsEdgeData, 
 				DfsEdgeData.Factory>>(graph).search());
 	}
 	/**

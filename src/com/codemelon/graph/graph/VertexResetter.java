@@ -6,6 +6,7 @@ import com.codemelon.graph.common.Color;
 import com.codemelon.graph.vertex.BfsVertex;
 import com.codemelon.graph.vertex.ChildVertex;
 import com.codemelon.graph.vertex.DfsVertex;
+import com.codemelon.graph.vertex.EdgeTypeDfsVertex;
 import com.codemelon.graph.vertex.DistanceVertex;
 import com.codemelon.graph.vertex.OrderedDfsVertex;
 import com.codemelon.graph.vertex.VertexConstants;
@@ -29,12 +30,19 @@ public class VertexResetter {
 		resetFinishTimes(graph);	
 	}
 	/**
-	 * Reset the vertex properties used in depth-first search
+	 * Reset the vertex properties used in edge type depth-first search
+	 * @param graph graph whose vertices are to be reset
+	 */
+	public static void resetForEdgeTypeDfs(AbstractGraph<? extends EdgeTypeDfsVertex> graph) {
+		resetForDfs(graph);
+		resetParents(graph);
+	}
+	/**
+	 * Reset the vertex properties used in edge type depth-first search
 	 * @param graph graph whose vertices are to be reset
 	 */
 	public static void resetForDfs(AbstractGraph<? extends DfsVertex> graph) {
 		resetColors(graph);
-		resetParents(graph);
 		resetDiscoveryTimes(graph);
 		resetFinishTimes(graph);	
 	}

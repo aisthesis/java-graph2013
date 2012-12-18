@@ -13,7 +13,7 @@ import com.codemelon.graph.edge.EdgeDataFactory;
  * @my.edited Dec 16, 2012
  */
 public class DirectedDfsVertex<T extends DfsEdgeData, U extends EdgeDataFactory<T>> 
-		extends DirectedEdgeDataVertex<T, U> implements DfsVertex {
+		extends DirectedEdgeDataVertex<T, U> implements EdgeTypeDfsVertex {
 	private Color color;
 	private ChildVertex parent;
 	private int discoveryTime;
