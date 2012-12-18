@@ -87,4 +87,16 @@ public class DirectedOrderedDfsVertex extends DirectedSimpleColoredVertex
 	public int getComponent() {
 		return component;
 	}
+	
+	public static enum Factory implements VertexFactory<DirectedOrderedDfsVertex> {
+		INSTANCE;
+
+		/* (non-Javadoc)
+		 * @see com.codemelon.graph.vertex.VertexFactory#newVertex()
+		 */
+		@Override
+		public DirectedOrderedDfsVertex newVertex() {
+			return new DirectedOrderedDfsVertex();
+		}
+	}
 }
