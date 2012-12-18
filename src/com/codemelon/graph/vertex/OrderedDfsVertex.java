@@ -10,6 +10,5 @@ package com.codemelon.graph.vertex;
  * @my.created Dec 17, 2012
  * @my.edited Dec 17, 2012
  */
-public interface OrderedDfsVertex extends ColoredVertex, VisitedVertex,
-		OrderedSearchVertex, ComponentVertex {
+public interface OrderedDfsVertex extends DfsVertex, OrderedSearchVertex, ComponentVertex {
 }
