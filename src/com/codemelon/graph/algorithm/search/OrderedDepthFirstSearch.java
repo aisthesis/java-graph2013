@@ -60,7 +60,6 @@ public class OrderedDepthFirstSearch<T extends OrderedDfsVertex> {
 		this(graph, new SearchOrderComparator());
 	}
 
-	
 	/**
 	 * Conduct a depth-first search on the graph, visiting vertices
 	 * in the order specified in the constructor.

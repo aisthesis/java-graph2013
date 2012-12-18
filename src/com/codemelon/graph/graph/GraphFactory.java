@@ -11,7 +11,7 @@ import com.codemelon.graph.vertex.Vertex;
  */
 public interface GraphFactory<T extends Vertex> {
 	/**
-	 * Creates a graph with a default initial capacity.
+	 * Creates a graph with the default initial capacity.
 	 * @return a new graph having the given vertex type
 	 */
 	public AbstractGraph<T> newGraph();/**
