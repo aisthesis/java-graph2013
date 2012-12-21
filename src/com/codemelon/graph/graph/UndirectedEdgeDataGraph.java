@@ -14,8 +14,8 @@ import com.codemelon.graph.vertex.UndirectedEdgeDataVertex;
  * @my.created Dec 16, 2012
  * @my.edited Dec 16, 2012
  */
-public class UndirectedEdgeDataGraph<T, U extends EdgeDataFactory<T>> 
-		extends AbstractGraph<UndirectedEdgeDataVertex<T, U>> {
+public class UndirectedEdgeDataGraph<T, U extends EdgeDataFactory<T>, V extends UndirectedEdgeDataVertex<T, U>> 
+		extends AbstractGraph<V> {
 	/**
 	 * Initialize graph to a default initial capacity of 16 vertices
 	 */
@@ -34,7 +34,7 @@ public class UndirectedEdgeDataGraph<T, U extends EdgeDataFactory<T>>
 	 * @param vertices collection of vertices that will make up the initial vertices
 	 * of the graph
 	 */
-	public UndirectedEdgeDataGraph(Collection<UndirectedEdgeDataVertex<T, U>> vertices) {
+	public UndirectedEdgeDataGraph(Collection<V> vertices) {
 		super(vertices);
 	}
 
@@ -44,7 +44,7 @@ public class UndirectedEdgeDataGraph<T, U extends EdgeDataFactory<T>>
 	@Override
 	public final int edgeCount() {
 		int result = 0;
-		Iterator<UndirectedEdgeDataVertex<T, U>> it = super.vertexIterator();
+		Iterator<V> it = super.vertexIterator();
 		while (it.hasNext()) {
 			result += it.next().adjacencyCount();
 		}

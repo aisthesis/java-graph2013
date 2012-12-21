@@ -24,7 +24,8 @@ public class UndirectedEdgeDataVertexTest {
 			vertices.put(i, new UndirectedEdgeDataVertex<DfsEdgeData, 
 					DfsEdgeData.Factory>(DfsEdgeData.Factory.INSTANCE));
 		}
-		new UndirectedEdgeDataGraph<DfsEdgeData, DfsEdgeData.Factory>(vertices.values());
+		new UndirectedEdgeDataGraph<DfsEdgeData, DfsEdgeData.Factory, 
+				UndirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>>(vertices.values());
 		vertices.get(0).addAdjacency(vertices.get(1));
 	}
 
