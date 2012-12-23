@@ -1,7 +1,6 @@
 package com.codemelon.graph.vertex;
 
-import com.codemelon.graph.edge.EdgeColorData;
-import com.codemelon.graph.edge.EdgeWeightData;
+import com.codemelon.graph.edge.SpanningTreeEdgeData;
 
 /**
  * Interface specifying the necessary characteristics of vertices for graphs on which Kruskal's algorithm
@@ -10,5 +9,5 @@ import com.codemelon.graph.edge.EdgeWeightData;
  * @my.created Dec 20, 2012
  * @my.edited Dec 20, 2012
  */
-public interface KruskalVertex<T extends EdgeWeightData & EdgeColorData> extends EdgeWeightVertex<T>, EdgeColorVertex<T> {
+public interface KruskalVertex<E extends SpanningTreeEdgeData> extends EdgeWeightVertex<E>, EdgeColorVertex<E> {
 }

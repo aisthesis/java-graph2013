@@ -127,23 +127,28 @@ public class UndirectedWeightedEdgeTest {
 	 */
 	@Test
 	public void testWeight() {
-		fail("Not yet implemented");
+		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
+				SpanningTreeEdgeData.Factory>> e = new UndirectedWeightedEdge<SpanningTreeEdgeData, 
+				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(vertices.get(1), vertices.get(0));
+		assertTrue("correct weight", graph.areEqualWeights(e.weight(), 
+				vertices.get(0).getEdgeWeight(vertices.get(1))));
 	}
-
-	/**
-	 * Test method for {@link com.codemelon.graph.edge.UndirectedWeightedEdge#getGraph()}.
-	 */
-	@Test
-	public void testGetGraph() {
-		fail("Not yet implemented");
-	}
-
 	/**
 	 * Test method for {@link com.codemelon.graph.edge.UndirectedWeightedEdge#equals(java.lang.Object)}.
 	 */
 	@Test
 	public void testEqualsObject() {
-		fail("Not yet implemented");
+		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
+				SpanningTreeEdgeData.Factory>> e1 = new UndirectedWeightedEdge<SpanningTreeEdgeData, 
+				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(vertices.get(1), vertices.get(0));
+		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
+				SpanningTreeEdgeData.Factory>> e2 = new UndirectedWeightedEdge<SpanningTreeEdgeData, 
+				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(vertices.get(0), vertices.get(1));
+		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
+				SpanningTreeEdgeData.Factory>> e3 = new UndirectedWeightedEdge<SpanningTreeEdgeData, 
+				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(vertices.get(2), vertices.get(3));
+		assertEquals("equals if same edge", e1, e1);
+		assertEquals("equals if same vertices but opposite direction", e1, e2);
+		assertFalse("Not equal if different edge", e1.equals(e3));
 	}
-
 }
