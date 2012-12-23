@@ -1,11 +1,16 @@
 package com.codemelon.graph.graph;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 import com.codemelon.graph.edge.EdgeDataFactory;
 import com.codemelon.graph.edge.EdgeWeightData;
+import com.codemelon.graph.edge.UndirectedWeightedEdge;
 import com.codemelon.graph.vertex.EdgeWeightVertex;
 import com.codemelon.graph.vertex.UndirectedEdgeDataVertex;
+import com.codemelon.graph.vertex.Vertex;
 
 /**
  * Undirected graph supporting floating point edge weight. This graph also has
@@ -105,5 +110,22 @@ public class UndirectedWeightedEdgeGraph<E extends EdgeWeightData, U extends Edg
 	@Override
 	public double getWeightEpsilon() {
 		return weightEpsilon;
+	}
+	/**
+	 * Return a set containing all weighted edges in the graph.
+	 * @return a set containing all weighted edges in the graph
+	 */
+	@SuppressWarnings("unchecked")
+	public Set<UndirectedWeightedEdge<E, V>> getWeightedEdges() {
+		HashSet<UndirectedWeightedEdge<E, V>> result = new HashSet<UndirectedWeightedEdge<E, V>>(edgeCount());
+		Iterator<V> vertexIterator = this.vertexIterator();
+		V from;
+		Set<? extends Vertex> adjacencySet;
+		from = vertexIterator.next();
+		adjacencySet = from.getAdjacencies();
+		for (Vertex to : adjacencySet) {
+			result.add(new UndirectedWeightedEdge<E, V>(from, (V) to));
+		}
+		return result;
 	}
 }

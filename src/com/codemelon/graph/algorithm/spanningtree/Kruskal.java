@@ -1,13 +1,14 @@
 package com.codemelon.graph.algorithm.spanningtree;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 
+import com.codemelon.graph.common.Color;
 import com.codemelon.graph.common.DisjointSet;
-import com.codemelon.graph.graph.AbstractGraph;
 import com.codemelon.graph.graph.UndirectedWeightedEdgeGraph;
-import com.codemelon.graph.vertex.KruskalVertex;
+import com.codemelon.graph.graph.EdgeResetter;
 import com.codemelon.graph.vertex.UndirectedKruskalVertex;
 import com.codemelon.graph.edge.EdgeDataFactory;
 import com.codemelon.graph.edge.SpanningTreeEdgeData;
@@ -49,5 +50,25 @@ public class Kruskal<E extends SpanningTreeEdgeData, U extends EdgeDataFactory<E
 		vertexDisjointSet = null;
 		vertexMap = null;
 		spanningTree = null;		
+	}
+	/**
+	 * Set edges in minimum spanning tree to BLACK, all other edges are 
+	 * set to WHITE
+	 */
+	public void markEdges() {
+		initializeForMarking();
+		for (UndirectedWeightedEdge<E, V> edge : edges) {
+			if (vertexDisjointSet.findSet(edge.from()) 
+					!= vertexDisjointSet.findSet(edge.to())) {
+				edge.from().setEdgeColor(edge.to(), Color.BLACK);
+				vertexDisjointSet.union(edge.from(), edge.to());				
+			}
+		}
+	}
+	private void initializeForMarking() {
+		EdgeResetter.resetColors(graph);
+		vertexDisjointSet = new DisjointSet<V>(graph.getVertices());
+		edges = new ArrayList<UndirectedWeightedEdge<E, V>>(graph.getWeightedEdges());
+		Collections.sort(edges, COMPARATOR);
 	}
 }
