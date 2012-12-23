@@ -8,6 +8,10 @@ import com.codemelon.graph.vertex.DirectedEdgeDataVertex;
 import com.codemelon.graph.vertex.EdgeWeightVertex;
 
 /**
+ * Directed graph supporting floating point edge weight. This graph also has
+ * a method for determining floating point equality between weights by determining
+ * whether or not the difference lies below a certain epsilon value defined for
+ * the graph at the time of its creation. 
  * @author Marshall Farrier
  * @my.created Dec 23, 2012
  * @my.edited Dec 23, 2012

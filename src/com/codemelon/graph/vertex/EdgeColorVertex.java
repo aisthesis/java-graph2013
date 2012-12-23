@@ -9,17 +9,17 @@ import com.codemelon.graph.edge.EdgeColorData;
  * @my.created Dec 20, 2012
  * @my.edited Dec 20, 2012
  */
-public interface EdgeColorVertex<T extends EdgeColorData> extends EdgeDataVertex<T> {
+public interface EdgeColorVertex<E extends EdgeColorData> extends EdgeDataVertex<E> {
 	/**
 	 * Set the color of the edge whose head is the given vertex.
 	 * @param to head of the edge whose color is to be set
 	 * @param color value to which to set the edge's color
 	 */
-	public void setEdgeColor(EdgeColorVertex<T> to, Color color);
+	public void setEdgeColor(EdgeColorVertex<E> to, Color color);
 	/**
 	 * Retrieve the color of the edge whose head is the given vertex
 	 * @param to head of the edge whose color is to be retrieved
 	 * @return color of the specified edge
 	 */
-	public Color getEdgeColor(EdgeColorVertex<T> to);
+	public Color getEdgeColor(EdgeColorVertex<E> to);
 }
