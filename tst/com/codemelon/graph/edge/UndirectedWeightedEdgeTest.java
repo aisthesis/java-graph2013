@@ -2,9 +2,13 @@ package com.codemelon.graph.edge;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.codemelon.graph.vertex.UndirectedKruskalVertex;
 
 /**
  * @author Marshall Farrier
@@ -13,7 +17,8 @@ import org.junit.Test;
  */
 public class UndirectedWeightedEdgeTest {
 	private static final double CUSTOM_WEIGHT = 2.71828;
-	private static final int VERTICES_IN_TEST_GRAPH = 1000;
+	private static final int VERTICES_IN_TEST_GRAPH = 10;
+	HashMap<Integer, UndirectedKruskalVertex> vertices;
 
 	/**
 	 * @throws java.lang.Exception

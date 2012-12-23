@@ -13,8 +13,8 @@ import com.codemelon.graph.vertex.DirectedDfsVertex;
  * @my.created Dec 16, 2012
  * @my.edited Dec 16, 2012
  */
-public class DfsGraph<T extends DfsEdgeData, U extends EdgeDataFactory<T>> extends DirectedEdgeDataGraph<T, U, 
-		DirectedDfsVertex<T, U>> {
+public class DfsGraph<E extends DfsEdgeData, U extends EdgeDataFactory<E>> extends DirectedEdgeDataGraph<E, U, 
+		DirectedDfsVertex<E, U>> {
 	/**
 	 * Initialize graph to a default initial capacity of 16 vertices
 	 */
@@ -33,7 +33,7 @@ public class DfsGraph<T extends DfsEdgeData, U extends EdgeDataFactory<T>> exten
 	 * @param vertices collection of vertices that will make up the initial vertices
 	 * of the graph
 	 */
-	public DfsGraph(Collection<DirectedDfsVertex<T, U>> vertices) {
+	public DfsGraph(Collection<DirectedDfsVertex<E, U>> vertices) {
 		super(vertices);
 	}
 }

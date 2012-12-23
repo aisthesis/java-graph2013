@@ -14,7 +14,7 @@ import com.codemelon.graph.vertex.UndirectedEdgeDataVertex;
  * @my.created Dec 16, 2012
  * @my.edited Dec 16, 2012
  */
-public class UndirectedEdgeDataGraph<T, U extends EdgeDataFactory<T>, V extends UndirectedEdgeDataVertex<T, U>> 
+public class UndirectedEdgeDataGraph<E, U extends EdgeDataFactory<E>, V extends UndirectedEdgeDataVertex<E, U>> 
 		extends AbstractGraph<V> {
 	/**
 	 * Initialize graph to a default initial capacity of 16 vertices

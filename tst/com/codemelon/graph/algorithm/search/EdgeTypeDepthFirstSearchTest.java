@@ -36,7 +36,7 @@ public class EdgeTypeDepthFirstSearchTest {
 	public void testSmallCLRSGraph() {
 		HashMap<Character, DirectedDfsVertex<DfsEdgeData, DfsEdgeData.Factory>> vertices = 
 				setUpSmallCLRSGraph();
-		assertFalse("Graph contains a cycle", new EdgeTypeDepthFirstSearch<DirectedDfsVertex<DfsEdgeData, 
+		assertFalse("Graph contains a cycle", new EdgeTypeDepthFirstSearch<DfsEdgeData, DirectedDfsVertex<DfsEdgeData, 
 				DfsEdgeData.Factory>>(graph).search());
 		// all vertices are black
 		for (char i = 'u'; i <= 'z'; i++) {
@@ -51,7 +51,7 @@ public class EdgeTypeDepthFirstSearchTest {
 	@Test
 	public void testBiggerCircularGraph() {
 		ArrayList<DirectedDfsVertex<DfsEdgeData, DfsEdgeData.Factory>> vertices = setUpBiggerCircularGraph();
-		assertFalse("Graph is not acyclic", new EdgeTypeDepthFirstSearch<DirectedDfsVertex<DfsEdgeData, 
+		assertFalse("Graph is not acyclic", new EdgeTypeDepthFirstSearch<DfsEdgeData, DirectedDfsVertex<DfsEdgeData, 
 				DfsEdgeData.Factory>>(graph).search());		
 		//vertex first discovered will be vertex last finished in this case
 		int indexOfFirstDiscovery = -1;
@@ -80,7 +80,7 @@ public class EdgeTypeDepthFirstSearchTest {
 		ArrayList<DirectedDfsVertex<DfsEdgeData, DfsEdgeData.Factory>> vertices = setUpBiggerCircularGraph();
 		// break the cycle by clearing 1 adjacency list
 		vertices.get(0).clearAdjacencies();
-		assertTrue("Graph is acyclic", new EdgeTypeDepthFirstSearch<DirectedDfsVertex<DfsEdgeData, 
+		assertTrue("Graph is acyclic", new EdgeTypeDepthFirstSearch<DfsEdgeData, DirectedDfsVertex<DfsEdgeData, 
 				DfsEdgeData.Factory>>(graph).search());
 	}
 	/**

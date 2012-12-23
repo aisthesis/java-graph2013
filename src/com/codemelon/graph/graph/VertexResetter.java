@@ -33,7 +33,7 @@ public class VertexResetter {
 	 * Reset the vertex properties used in edge type depth-first search
 	 * @param graph graph whose vertices are to be reset
 	 */
-	public static void resetForEdgeTypeDfs(AbstractGraph<? extends EdgeTypeDfsVertex> graph) {
+	public static void resetForEdgeTypeDfs(AbstractGraph<? extends EdgeTypeDfsVertex<?>> graph) {
 		resetForDfs(graph);
 		resetParents(graph);
 	}

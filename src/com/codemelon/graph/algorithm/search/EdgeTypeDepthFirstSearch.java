@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.codemelon.graph.common.Color;
 import com.codemelon.graph.edge.EdgeType;
+import com.codemelon.graph.edge.EdgeTypeData;
 import com.codemelon.graph.graph.AbstractGraph;
 import com.codemelon.graph.vertex.EdgeTypeDfsVertex;
 import com.codemelon.graph.vertex.Vertex;
@@ -23,8 +24,8 @@ import com.codemelon.graph.graph.VertexResetter;
  * @my.created Dec 16, 2012
  * @my.edited Dec 16, 2012
  */
-public class EdgeTypeDepthFirstSearch<T extends EdgeTypeDfsVertex> {
-	private AbstractGraph<T> graph;
+public class EdgeTypeDepthFirstSearch<E extends EdgeTypeData, V extends EdgeTypeDfsVertex<E>> {
+	private AbstractGraph<V> graph;
 	private int t;	// time in CLRS
 	private boolean isAcyclic;
 	
@@ -33,7 +34,7 @@ public class EdgeTypeDepthFirstSearch<T extends EdgeTypeDfsVertex> {
 	 * No changes are made to the graph when it is passed into the constructor.
 	 * @param graph graph on which the search will be run
 	 */
-	public EdgeTypeDepthFirstSearch(AbstractGraph<T> graph) {
+	public EdgeTypeDepthFirstSearch(AbstractGraph<V> graph) {
 		this.graph = graph;
 		isAcyclic = true;
 	}
@@ -56,8 +57,8 @@ public class EdgeTypeDepthFirstSearch<T extends EdgeTypeDfsVertex> {
 	public boolean search() {
 		VertexResetter.resetForEdgeTypeDfs(graph);
 		t = VisitedVertex.FIRST_DISCOVERY_TIME - 1;	// first discovery time will be FIRST_DISCOVERY_TIME
-		Iterator<T> it = graph.vertexIterator();
-		EdgeTypeDfsVertex u;
+		Iterator<V> it = graph.vertexIterator();
+		EdgeTypeDfsVertex<E> u;
 		while (it.hasNext()) {
 			u = it.next();
 			if (u.getColor() == Color.WHITE) {
@@ -66,7 +67,8 @@ public class EdgeTypeDepthFirstSearch<T extends EdgeTypeDfsVertex> {
 		}
 		return isAcyclic;
 	}
-	private void visit(EdgeTypeDfsVertex u) {
+	@SuppressWarnings("unchecked")
+	private void visit(EdgeTypeDfsVertex<E> u) {
 		u.setDiscoveryTime(++t);
 		u.setColor(Color.GRAY);
 		Set<? extends Vertex> adjacencies = u.getAdjacencies();
@@ -74,19 +76,19 @@ public class EdgeTypeDepthFirstSearch<T extends EdgeTypeDfsVertex> {
 			switch(((ColoredVertex) v).getColor()) {
 			case WHITE:
 				((ChildVertex) v).setParent(u);
-				u.setEdgeType((EdgeTypeVertex) v, EdgeType.TREE);
-				visit(((EdgeTypeDfsVertex) v));
+				u.setEdgeType((EdgeTypeVertex<E>) v, EdgeType.TREE);
+				visit(((EdgeTypeDfsVertex<E>) v));
 				break;
 			case GRAY:
-				u.setEdgeType(((EdgeTypeVertex) v), EdgeType.BACK);
+				u.setEdgeType(((EdgeTypeVertex<E>) v), EdgeType.BACK);
 				isAcyclic = false;
 				break;
 			case BLACK:
 				if (u.getDiscoveryTime() < ((VisitedVertex) v).getDiscoveryTime()) {
-					u.setEdgeType((EdgeTypeVertex) v, EdgeType.FORWARD);
+					u.setEdgeType((EdgeTypeVertex<E>) v, EdgeType.FORWARD);
 				}
 				else {
-					u.setEdgeType((EdgeTypeVertex) v, EdgeType.CROSS);					
+					u.setEdgeType((EdgeTypeVertex<E>) v, EdgeType.CROSS);					
 				}
 			}
 		}
