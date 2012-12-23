@@ -8,6 +8,10 @@ package com.codemelon.graph.vertex;
  */
 public interface DistanceVertex extends Vertex {
 	/**
+	 * Default distance to which vertices are initialized unless otherwise specified.
+	 */
+	public static final int DEFAULT_DISTANCE = -1;
+	/**
 	 * Set the distance field
 	 * @param distance value to which to set the distance field
 	 */

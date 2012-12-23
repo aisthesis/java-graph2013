@@ -9,6 +9,10 @@ package com.codemelon.graph.vertex;
  */
 public interface ComponentVertex extends Vertex {
 	/**
+	 * Default value for vertices' component field.
+	 */
+	public static final int DEFAULT_COMPONENT = -1;
+	/**
 	 * The starting number when numbering components.
 	 */
 	public static final int FIRST_COMPONENT_NUMBER = 0;

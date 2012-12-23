@@ -9,7 +9,6 @@ import com.codemelon.graph.vertex.DfsVertex;
 import com.codemelon.graph.vertex.EdgeTypeDfsVertex;
 import com.codemelon.graph.vertex.DistanceVertex;
 import com.codemelon.graph.vertex.OrderedDfsVertex;
-import com.codemelon.graph.vertex.VertexConstants;
 import com.codemelon.graph.vertex.ColoredVertex;
 import com.codemelon.graph.vertex.VisitedVertex;
 
@@ -79,7 +78,7 @@ public class VertexResetter {
 	 * @param graph graph whose vertices are to be reset
 	 */
 	public static void resetDistances(AbstractGraph<? extends DistanceVertex> graph) {
-		resetDistances(graph, VertexConstants.DEFAULT_DISTANCE);
+		resetDistances(graph, DistanceVertex.DEFAULT_DISTANCE);
 	}
 	/**
 	 * Reset the distance property of all vertices in the graph to the given value.
@@ -107,7 +106,7 @@ public class VertexResetter {
 	 * @param graph graph whose vertices are to be reset
 	 */
 	public static void resetDiscoveryTimes(AbstractGraph<? extends VisitedVertex> graph) {
-		resetDiscoveryTimes(graph, VertexConstants.DEFAULT_DISCOVERY_TIME);
+		resetDiscoveryTimes(graph, VisitedVertex.DEFAULT_DISCOVERY_TIME);
 	}
 	/**
 	 * Reset the discovery time of all vertices in the graph to the given value.
@@ -125,7 +124,7 @@ public class VertexResetter {
 	 * @param graph graph whose vertices are to be reset
 	 */
 	public static void resetFinishTimes(AbstractGraph<? extends VisitedVertex> graph) {
-		resetFinishTimes(graph, VertexConstants.DEFAULT_FINISH_TIME);
+		resetFinishTimes(graph, VisitedVertex.DEFAULT_FINISH_TIME);
 	}
 	/**
 	 * Reset the finish time of all vertices in the graph to the given value.

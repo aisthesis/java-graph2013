@@ -8,6 +8,10 @@ package com.codemelon.graph.vertex;
  */
 public interface OrderedSearchVertex extends Vertex {
 	/**
+	 * Default value to which vertices' search order fields are initialized unless otherwise specified.
+	 */
+	public static final int DEFAULT_SEARCH_ORDER_VALUE = -1;
+	/**
 	 * Set the value of the searchOrder field
 	 * @param searchOrder value to which to set the searchOrder field
 	 */

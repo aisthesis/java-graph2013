@@ -6,8 +6,12 @@ import java.util.HashMap;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.matchers.JUnitMatchers;
+import org.junit.rules.ExpectedException;
 
+import com.codemelon.graph.graph.KruskalGraph;
 import com.codemelon.graph.vertex.UndirectedKruskalVertex;
 
 /**
@@ -18,28 +22,93 @@ import com.codemelon.graph.vertex.UndirectedKruskalVertex;
 public class UndirectedWeightedEdgeTest {
 	private static final double CUSTOM_WEIGHT = 2.71828;
 	private static final int VERTICES_IN_TEST_GRAPH = 10;
-	HashMap<Integer, UndirectedKruskalVertex> vertices;
+	private HashMap<Integer, UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>> vertices;
+	private KruskalGraph<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory> graph;
 
-	/**
-	 * @throws java.lang.Exception
-	 */
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
+		vertices = new HashMap<Integer, UndirectedKruskalVertex<SpanningTreeEdgeData, 
+				SpanningTreeEdgeData.Factory>>(VERTICES_IN_TEST_GRAPH);
+		for (int i = 0; i < VERTICES_IN_TEST_GRAPH; i++) {
+			vertices.put(i, new UndirectedKruskalVertex<SpanningTreeEdgeData, 
+					SpanningTreeEdgeData.Factory>(SpanningTreeEdgeData.Factory.INSTANCE));
+		}
+		graph = new KruskalGraph<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>(vertices.values());
+		vertices.get(0).addAdjacency(vertices.get(1));
+		vertices.get(0).setEdgeWeight(vertices.get(1), CUSTOM_WEIGHT);
+		vertices.get(2).addAdjacency(vertices.get(3));
 	}
+
+	@After
+	public void tearDown() {
+		vertices = null;
+		graph = null;
+	}
+	
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
 
 	/**
-	 * @throws java.lang.Exception
+	 * An exception should be thrown if the constructor is called on vertices that don't belong
+	 * to a graph.
+	 * Test method for {@link com.codemelon.graph.edge.UndirectedWeightedEdge#UndirectedWeightedEdge(Vertex, Vertex)}.
 	 */
-	@After
-	public void tearDown() throws Exception {
+	@Test
+	public void testUndirectedWeightedEdgeNullGraph() {
+		thrown.expect(IllegalArgumentException.class);
+		thrown.expectMessage(JUnitMatchers.containsString("does not exist"));
+		UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory> u = new UndirectedKruskalVertex<SpanningTreeEdgeData, 
+				SpanningTreeEdgeData.Factory>(SpanningTreeEdgeData.Factory.INSTANCE);
+		UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory> v = new UndirectedKruskalVertex<SpanningTreeEdgeData, 
+				SpanningTreeEdgeData.Factory>(SpanningTreeEdgeData.Factory.INSTANCE);
+		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
+				SpanningTreeEdgeData.Factory>> e = new UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
+				SpanningTreeEdgeData.Factory>>(u, v);
+		e.from();	
 	}
-
+	/**
+	 * An exception should be thrown if the constructor is called on vertices belonging to different graphs.
+	 * Test method for {@link com.codemelon.graph.edge.UndirectedWeightedEdge#UndirectedWeightedEdge(Vertex, Vertex)}.
+	 */
+	@Test
+	public void testUndirectedWeightedEdgeDifferentGraphs() {
+		thrown.expect(IllegalArgumentException.class);
+		thrown.expectMessage(JUnitMatchers.containsString("does not exist"));
+		UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory> u = new UndirectedKruskalVertex<SpanningTreeEdgeData, 
+				SpanningTreeEdgeData.Factory>(SpanningTreeEdgeData.Factory.INSTANCE);
+		KruskalGraph<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory> g2 = 
+				new KruskalGraph<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>();
+		g2.addVertex(u);
+		assertEquals("u belongs to g2", g2, u.getGraph());
+		assertEquals("0 vertex belongs to graph", graph, vertices.get(0).getGraph());
+		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
+				SpanningTreeEdgeData.Factory>> e = new UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
+				SpanningTreeEdgeData.Factory>>(u, vertices.get(0));
+		e.from();		
+	}
+	/**
+	 * An exception should be thrown if the constructor is called on vertices belonging to the same graph but
+	 * not connected by an edge.
+	 * Test method for {@link com.codemelon.graph.edge.UndirectedWeightedEdge#UndirectedWeightedEdge(Vertex, Vertex)}.
+	 */
+	@Test
+	public void testUndirectedWeightedEdgeNoSuchEdge() {
+		thrown.expect(IllegalArgumentException.class);
+		thrown.expectMessage(JUnitMatchers.containsString("does not exist"));
+		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
+				SpanningTreeEdgeData.Factory>> e = new UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
+				SpanningTreeEdgeData.Factory>>(vertices.get(2), vertices.get(0));
+		e.from();
+	}
 	/**
 	 * Test method for {@link com.codemelon.graph.edge.UndirectedWeightedEdge#from()}.
 	 */
 	@Test
 	public void testFrom() {
-		fail("Not yet implemented");
+		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
+				SpanningTreeEdgeData.Factory>> e = new UndirectedWeightedEdge<SpanningTreeEdgeData, 
+				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(vertices.get(1), vertices.get(0));
+		assertEquals("correct tail", vertices.get(1), e.from());
 	}
 
 	/**
@@ -47,7 +116,10 @@ public class UndirectedWeightedEdgeTest {
 	 */
 	@Test
 	public void testTo() {
-		fail("Not yet implemented");
+		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
+				SpanningTreeEdgeData.Factory>> e = new UndirectedWeightedEdge<SpanningTreeEdgeData, 
+				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(vertices.get(0), vertices.get(1));
+		assertEquals("correct head", vertices.get(1), e.to());
 	}
 
 	/**

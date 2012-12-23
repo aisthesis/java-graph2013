@@ -18,10 +18,10 @@ public class DirectedOrderedDfsVertex extends DirectedSimpleColoredVertex
 	 */
 	public DirectedOrderedDfsVertex() {
 		super();
-		discoveryTime = VertexConstants.DEFAULT_DISCOVERY_TIME;
-		finishTime = VertexConstants.DEFAULT_FINISH_TIME;
-		searchOrder = VertexConstants.DEFAULT_SEARCH_ORDER_VALUE;
-		component = VertexConstants.DEFAULT_COMPONENT;
+		discoveryTime = VisitedVertex.DEFAULT_DISCOVERY_TIME;
+		finishTime = VisitedVertex.DEFAULT_FINISH_TIME;
+		searchOrder = OrderedSearchVertex.DEFAULT_SEARCH_ORDER_VALUE;
+		component = ComponentVertex.DEFAULT_COMPONENT;
 	}
 
 	/* (non-Javadoc)

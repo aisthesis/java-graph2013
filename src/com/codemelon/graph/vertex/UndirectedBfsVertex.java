@@ -18,7 +18,7 @@ public class UndirectedBfsVertex extends UndirectedSimpleVertex implements
 		super();
 		this.color = Color.WHITE;
 		this.parent = null;
-		this.distance = VertexConstants.DEFAULT_DISTANCE;
+		this.distance = DistanceVertex.DEFAULT_DISTANCE;
 	}
 
 	/* (non-Javadoc)

@@ -9,6 +9,14 @@ package com.codemelon.graph.vertex;
  */
 public interface VisitedVertex extends Vertex {
 	/**
+	 * Default discovery time to which vertices are initialized unless otherwise specified.
+	 */
+	public static final int DEFAULT_DISCOVERY_TIME = -1;
+	/**
+	 * Default finish time to which vertices are initialized unless otherwise specified.
+	 */
+	public static final int DEFAULT_FINISH_TIME = -1;
+	/**
 	 * The discovery time shown for the vertex first visited in the search
 	 */
 	public static final int FIRST_DISCOVERY_TIME = 0;
