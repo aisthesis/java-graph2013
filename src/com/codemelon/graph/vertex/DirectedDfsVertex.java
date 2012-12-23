@@ -13,7 +13,7 @@ import com.codemelon.graph.edge.EdgeDataFactory;
  * @my.edited Dec 16, 2012
  */
 public class DirectedDfsVertex<T extends DfsEdgeData, U extends EdgeDataFactory<T>> 
-		extends DirectedEdgeDataVertex<T, U> implements EdgeTypeDfsVertex {
+		extends DirectedEdgeDataVertex<T, U> implements EdgeTypeDfsVertex<T> {
 	private Color color;
 	private ChildVertex parent;
 	private int discoveryTime;
@@ -61,7 +61,7 @@ public class DirectedDfsVertex<T extends DfsEdgeData, U extends EdgeDataFactory<
 	 * @see com.codemelon.graph.vertex.EdgeTypeVertex#setEdgeType(com.codemelon.graph.vertex.EdgeTypeVertex, com.codemelon.graph.edge.EdgeType)
 	 */
 	@Override
-	public void setEdgeType(EdgeTypeVertex to, EdgeType edgeType) {
+	public void setEdgeType(EdgeTypeVertex<T> to, EdgeType edgeType) {
 		super.getEdgeData(to).setEdgeType(edgeType);
 	}
 
@@ -69,7 +69,7 @@ public class DirectedDfsVertex<T extends DfsEdgeData, U extends EdgeDataFactory<
 	 * @see com.codemelon.graph.vertex.EdgeTypeVertex#getEdgeType(com.codemelon.graph.vertex.EdgeTypeVertex)
 	 */
 	@Override
-	public EdgeType getEdgeType(EdgeTypeVertex to) {
+	public EdgeType getEdgeType(EdgeTypeVertex<T> to) {
 		return super.getEdgeData(to).getEdgeType();
 	}
 

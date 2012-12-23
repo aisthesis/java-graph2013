@@ -10,7 +10,7 @@ import com.codemelon.graph.edge.EdgeDataFactory;
  * @my.created Dec 13, 2012
  * @my.edited Dec 13, 2012
  */
-public class DirectedEdgeDataVertex<T, U extends EdgeDataFactory<T>> extends AbstractVertex {
+public class DirectedEdgeDataVertex<T, U extends EdgeDataFactory<T>> extends AbstractVertex implements EdgeDataVertex<T> {
 	private U edgeDataFactory;
 	private IdentityHashMap<Vertex, T> adjacencies;
 	
@@ -22,14 +22,6 @@ public class DirectedEdgeDataVertex<T, U extends EdgeDataFactory<T>> extends Abs
 		super();
 		this.edgeDataFactory = edgeDataFactory;
 		adjacencies = new IdentityHashMap<Vertex, T>();
-	}
-	/**
-	 * Get data for a particular edge.
-	 * @param to head of the edge for which to retrieve data
-	 * @return the data for the given edge
-	 */
-	public final T getEdgeData(Vertex to) {
-		return adjacencies.get(to);
 	}
 
 	/* (non-Javadoc)
@@ -102,5 +94,12 @@ public class DirectedEdgeDataVertex<T, U extends EdgeDataFactory<T>> extends Abs
 	}
 	void removeDirectedAdjacency(Vertex to) {
 		adjacencies.remove(to);
+	}
+	/* (non-Javadoc)
+	 * @see com.codemelon.graph.vertex.EdgeDataVertex#getEdgeData(com.codemelon.graph.vertex.EdgeDataVertex)
+	 */
+	@Override
+	public T getEdgeData(EdgeDataVertex<T> to) {
+		return adjacencies.get(to);
 	}
 }

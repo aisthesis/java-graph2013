@@ -16,14 +16,14 @@ import com.codemelon.graph.vertex.Vertex;
  * @my.created Dec 20, 2012
  * @my.edited Dec 20, 2012
  */
-public class UndirectedWeightedEdge<T extends UndirectedEdgeDataVertex<?, ?> & EdgeWeightVertex> {
-	private T from;
-	private T to;
+public class UndirectedWeightedEdge<E extends EdgeWeightData, V extends UndirectedEdgeDataVertex<E, ?> & EdgeWeightVertex<E>> {
+	private V from;
+	private V to;
 	/**
 	 * @param from
 	 * @param to
 	 */
-	public UndirectedWeightedEdge(T from, T to) {
+	public UndirectedWeightedEdge(V from, V to) {
 		if (!from.containsAdjacency(to)) {
 			throw new IllegalArgumentException("Edge does not exist!");
 		}
@@ -38,7 +38,7 @@ public class UndirectedWeightedEdge<T extends UndirectedEdgeDataVertex<?, ?> & E
 	 * from() and to() vertices.
 	 * @return the "from" vertex specified in the constructor
 	 */
-	public final T from() { return from; }
+	public final V from() { return from; }
 	/**
 	 * Returns one end of the given edge. Note that the edge is undirected,
 	 * so the distinction between head and tail or from and to is arbitrary.
@@ -47,7 +47,7 @@ public class UndirectedWeightedEdge<T extends UndirectedEdgeDataVertex<?, ?> & E
 	 * from() and to() vertices.
 	 * @return the "from" vertex specified in the constructor
 	 */
-	public final T to() { return to; }
+	public final V to() { return to; }
 	/**
 	 * Returns the edge's weight.
 	 * @return the edge's weight
@@ -73,8 +73,8 @@ public class UndirectedWeightedEdge<T extends UndirectedEdgeDataVertex<?, ?> & E
 	 */
 	@Override
 	public final boolean equals(Object o) {
-		return (from == ((UndirectedWeightedEdge<?>) o).from && to == ((UndirectedWeightedEdge<?>) o).to) 
-				|| (from == ((UndirectedWeightedEdge<?>) o).to && to == ((UndirectedWeightedEdge<?>) o).from);
+		return (from == ((UndirectedWeightedEdge<?, ?>) o).from && to == ((UndirectedWeightedEdge<?, ?>) o).to) 
+				|| (from == ((UndirectedWeightedEdge<?, ?>) o).to && to == ((UndirectedWeightedEdge<?, ?>) o).from);
 	}
 	/**
 	 * Overridden so that adding weighted edges to a HashSet will automatically eliminate

@@ -12,6 +12,8 @@ import org.junit.Test;
  * @my.edited Dec 22, 2012
  */
 public class UndirectedWeightedEdgeTest {
+	private static final double CUSTOM_WEIGHT = 2.71828;
+	private static final int VERTICES_IN_TEST_GRAPH = 1000;
 
 	/**
 	 * @throws java.lang.Exception

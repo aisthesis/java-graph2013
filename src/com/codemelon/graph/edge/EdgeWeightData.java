@@ -8,6 +8,10 @@ package com.codemelon.graph.edge;
  */
 public interface EdgeWeightData {
 	/**
+	 * Default edge weight to which edges are initialized if not otherwise specified.
+	 */
+	public static final double DEFAULT_EDGE_WEIGHT = 1.0;
+	/**
 	 * Set the weight contained in this EdgeData object
 	 * @param weight value to which to set the weight
 	 */
