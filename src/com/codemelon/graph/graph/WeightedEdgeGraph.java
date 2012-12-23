@@ -19,4 +19,9 @@ public interface WeightedEdgeGraph {
 	 * a threshold
 	 */
 	public boolean areEqualWeights(double w1, double w2);
+	/**
+	 * Retrieve the epsilon used to determine weight equality in the given graph.
+	 * @return the epsilon used to determine weight equality in the given graph
+	 */
+	public double getWeightEpsilon();
 }

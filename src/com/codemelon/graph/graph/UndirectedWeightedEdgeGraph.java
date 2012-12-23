@@ -94,4 +94,12 @@ public class UndirectedWeightedEdgeGraph<E extends EdgeWeightData, U extends Edg
 	public boolean areEqualWeights(double w1, double w2) {
 		return Math.abs(w1 - w2) < weightEpsilon;
 	}
+
+	/* (non-Javadoc)
+	 * @see com.codemelon.graph.graph.WeightedEdgeGraph#getWeightEpsilon()
+	 */
+	@Override
+	public double getWeightEpsilon() {
+		return weightEpsilon;
+	}
 }
