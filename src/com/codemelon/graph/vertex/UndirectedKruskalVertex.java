@@ -14,6 +14,10 @@ import com.codemelon.graph.edge.SpanningTreeEdgeData;
 public class UndirectedKruskalVertex<E extends SpanningTreeEdgeData, U extends EdgeDataFactory<E>> 
 		extends UndirectedEdgeDataVertex<E, U> implements KruskalVertex<E> {
 
+	/**
+	 * Construct vertex from a factory for building appropriate EdgeData objects.
+	 * @param edgeDataFactory factory to use for constructing new EdgeData objects
+	 */
 	public UndirectedKruskalVertex(U edgeDataFactory) {
 		super(edgeDataFactory);
 	}
@@ -35,14 +39,20 @@ public class UndirectedKruskalVertex<E extends SpanningTreeEdgeData, U extends E
 		return getEdgeData(to).getWeight();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.codemelon.graph.vertex.EdgeColorVertex#setEdgeColor(com.codemelon.graph.vertex.EdgeColorVertex, com.codemelon.graph.common.Color)
+	 */
 	@Override
-	public void setEdgeColor(EdgeColorVertex<E> to, Color color) {
+	public final void setEdgeColor(EdgeColorVertex<E> to, Color color) {
 		getEdgeData(to).setColor(color);
 		to.getEdgeData(this).setColor(color);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.codemelon.graph.vertex.EdgeColorVertex#getEdgeColor(com.codemelon.graph.vertex.EdgeColorVertex)
+	 */
 	@Override
-	public Color getEdgeColor(EdgeColorVertex<E> to) {
+	public final Color getEdgeColor(EdgeColorVertex<E> to) {
 		return getEdgeData(to).getColor();
 	}
 }
