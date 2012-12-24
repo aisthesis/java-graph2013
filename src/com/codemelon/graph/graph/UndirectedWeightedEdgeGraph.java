@@ -121,10 +121,12 @@ public class UndirectedWeightedEdgeGraph<E extends EdgeWeightData, U extends Edg
 		Iterator<V> vertexIterator = this.vertexIterator();
 		V from;
 		Set<? extends Vertex> adjacencySet;
-		from = vertexIterator.next();
-		adjacencySet = from.getAdjacencies();
-		for (Vertex to : adjacencySet) {
-			result.add(new UndirectedWeightedEdge<E, V>(from, (V) to));
+		while (vertexIterator.hasNext()) {
+			from = vertexIterator.next();
+			adjacencySet = from.getAdjacencies();
+			for (Vertex to : adjacencySet) {
+				result.add(new UndirectedWeightedEdge<E, V>(from, (V) to));
+			}
 		}
 		return result;
 	}
