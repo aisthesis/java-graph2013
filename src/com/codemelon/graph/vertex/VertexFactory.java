@@ -6,10 +6,10 @@ package com.codemelon.graph.vertex;
  * @my.created Dec 17, 2012
  * @my.edited Dec 17, 2012
  */
-public interface VertexFactory<T extends Vertex> {
+public interface VertexFactory<V extends Vertex> {
 	/**
 	 * Creates an instance of the given type of vertex
 	 * @return a new instance of the given vertex type
 	 */
-	public T newVertex();
+	public V newVertex();
 }
