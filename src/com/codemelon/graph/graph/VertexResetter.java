@@ -24,7 +24,9 @@ import com.codemelon.graph.vertex.WeightedVertex;
 public class VertexResetter {
 	public static final <E extends SpanningTreeEdgeData, V extends PrimVertex<E>> void 
 			resetForPrim(AbstractGraph<V> graph) {
-		
+		resetColors(graph);
+		resetParents(graph);
+		resetWeights(graph, Double.MAX_VALUE);
 	}
 	/**
 	 * Reset the vertex properties used in ordered depth-first search
