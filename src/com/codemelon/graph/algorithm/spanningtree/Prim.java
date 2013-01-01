@@ -8,6 +8,7 @@ import com.codemelon.graph.edge.EdgeDataFactory;
 import com.codemelon.graph.edge.SpanningTreeEdgeData;
 import com.codemelon.graph.graph.UndirectedWeightedEdgeGraph;
 import com.codemelon.graph.graph.VertexResetter;
+import com.codemelon.graph.vertex.EdgeColorVertex;
 import com.codemelon.graph.vertex.UndirectedPrimVertex;
 import com.codemelon.graph.vertex.Vertex;
 import com.codemelon.graph.vertex.WeightComparator;
@@ -54,6 +55,9 @@ public class Prim<E extends SpanningTreeEdgeData, U extends EdgeDataFactory<E>, 
 		Set<? extends Vertex> adj;
 		while (!queue.isEmpty()) {
 			u = queue.poll();
+			if (u.getParent() != null) {
+				u.setEdgeColor((EdgeColorVertex<E>) u.getParent(), Color.BLACK);
+			}
 			u.setColor(Color.BLACK);
 			adj = u.getAdjacencies();
 			for (Vertex v : adj) {
