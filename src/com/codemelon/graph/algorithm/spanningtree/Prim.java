@@ -10,7 +10,6 @@ import com.codemelon.graph.graph.UndirectedWeightedEdgeGraph;
 import com.codemelon.graph.graph.VertexResetter;
 import com.codemelon.graph.vertex.UndirectedPrimVertex;
 import com.codemelon.graph.vertex.Vertex;
-import com.codemelon.graph.vertex.VertexFactory;
 import com.codemelon.graph.vertex.WeightComparator;
 import com.codemelon.graph.vertex.ColoredVertex;
 import com.codemelon.graph.vertex.WeightedVertex;
@@ -33,8 +32,7 @@ import com.codemelon.graph.vertex.ChildVertex;
  * @my.created Dec 24, 2012
  * @my.edited Dec 24, 2012
  */
-public class Prim<E extends SpanningTreeEdgeData, U extends EdgeDataFactory<E>, V extends UndirectedPrimVertex<E, U>, 
-		T extends VertexFactory<V>> {
+public class Prim<E extends SpanningTreeEdgeData, U extends EdgeDataFactory<E>, V extends UndirectedPrimVertex<E, U>> {
 	private UndirectedWeightedEdgeGraph<E, U, V> graph;
 	private PriorityQueue<V> queue;
 	
