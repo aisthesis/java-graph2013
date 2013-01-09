@@ -30,8 +30,7 @@ public class KruskalTest {
 	private UndirectedWeightedEdgeGraph<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory,
 			UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>> graph;
 	private Kruskal<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory,
-			UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>,
-			UndirectedKruskalVertexBuilder<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>> kruskal;
+			UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>> kruskal;
 	private HashMap<Character, UndirectedKruskalVertex<SpanningTreeEdgeData, 
 			SpanningTreeEdgeData.Factory>> vertices;
 	/**
@@ -55,8 +54,7 @@ public class KruskalTest {
 	@Test
 	public void testMarkEdges() {
 		kruskal = new Kruskal<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory,
-				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>,
-				UndirectedKruskalVertexBuilder<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(graph, null);
+				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(graph, null);
 		kruskal.markEdges();
 		assertEquals("Edge a-b marked", Color.BLACK, vertices.get('a').getEdgeColor(vertices.get('b')));
 		assertEquals("Edge h-g marked", Color.BLACK, vertices.get('h').getEdgeColor(vertices.get('g')));
@@ -78,8 +76,7 @@ public class KruskalTest {
 	@Test
 	public void testGenerateTree() {
 		kruskal = new Kruskal<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory,
-				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>,
-				UndirectedKruskalVertexBuilder<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(graph, VERTEX_FACTORY);
+				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(graph, VERTEX_FACTORY);
 		UndirectedWeightedEdgeGraph<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory,
 		UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>> spanningTree = kruskal.generateTree();
 		Map<UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>,
@@ -133,8 +130,7 @@ public class KruskalTest {
 	@Test(expected=IllegalStateException.class)
 	public void testGetVertexMap() {
 		kruskal = new Kruskal<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory,
-				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>,
-				UndirectedKruskalVertexBuilder<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(graph, VERTEX_FACTORY);
+				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(graph, VERTEX_FACTORY);
 		Map<UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>,
 				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>> vertexMap = kruskal.getVertexMap();
 		vertexMap.get(vertices.get('a'));
