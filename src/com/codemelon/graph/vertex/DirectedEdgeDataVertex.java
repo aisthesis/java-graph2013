@@ -10,15 +10,15 @@ import com.codemelon.graph.edge.EdgeDataFactory;
  * @my.created Dec 13, 2012
  * @my.edited Dec 13, 2012
  */
-public class DirectedEdgeDataVertex<T, U extends EdgeDataFactory<T>> extends AbstractVertex implements EdgeDataVertex<T> {
-	private U edgeDataFactory;
+public class DirectedEdgeDataVertex<T> extends AbstractVertex implements EdgeDataVertex<T> {
+	private EdgeDataFactory<T> edgeDataFactory;
 	private IdentityHashMap<Vertex, T> adjacencies;
 	
 	/**
 	 * Constructor from an EdgeDataFactory
 	 * @param edgeDataFactory factory to use for creating new EdgeData objects
 	 */
-	public DirectedEdgeDataVertex(U edgeDataFactory) {
+	public DirectedEdgeDataVertex(EdgeDataFactory<T> edgeDataFactory) {
 		super();
 		this.edgeDataFactory = edgeDataFactory;
 		adjacencies = new IdentityHashMap<Vertex, T>();

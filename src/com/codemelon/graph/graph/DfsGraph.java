@@ -3,7 +3,6 @@ package com.codemelon.graph.graph;
 import java.util.Collection;
 
 import com.codemelon.graph.edge.DfsEdgeData;
-import com.codemelon.graph.edge.EdgeDataFactory;
 import com.codemelon.graph.vertex.DirectedDfsVertex;
 
 /**
@@ -13,8 +12,8 @@ import com.codemelon.graph.vertex.DirectedDfsVertex;
  * @my.created Dec 16, 2012
  * @my.edited Dec 16, 2012
  */
-public class DfsGraph<E extends DfsEdgeData, U extends EdgeDataFactory<E>> extends DirectedEdgeDataGraph<E, U, 
-		DirectedDfsVertex<E, U>> {
+public class DfsGraph<E extends DfsEdgeData> extends DirectedEdgeDataGraph<E,  
+		DirectedDfsVertex<E>> {
 	/**
 	 * Initialize graph to a default initial capacity of 16 vertices
 	 */
@@ -33,7 +32,7 @@ public class DfsGraph<E extends DfsEdgeData, U extends EdgeDataFactory<E>> exten
 	 * @param vertices collection of vertices that will make up the initial vertices
 	 * of the graph
 	 */
-	public DfsGraph(Collection<DirectedDfsVertex<E, U>> vertices) {
+	public DfsGraph(Collection<DirectedDfsVertex<E>> vertices) {
 		super(vertices);
 	}
 }

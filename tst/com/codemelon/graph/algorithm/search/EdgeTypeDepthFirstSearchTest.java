@@ -21,7 +21,7 @@ import com.codemelon.graph.vertex.VisitedVertex;
  * @my.edited Dec 16, 2012
  */
 public class EdgeTypeDepthFirstSearchTest {
-	private DfsGraph<DfsEdgeData, DfsEdgeData.Factory> graph;
+	private DfsGraph<DfsEdgeData> graph;
 	private static final int CIRCULAR_GRAPH_SIZE = 1000;
 	
 	@After
@@ -34,10 +34,10 @@ public class EdgeTypeDepthFirstSearchTest {
 	 */
 	@Test
 	public void testSmallCLRSGraph() {
-		HashMap<Character, DirectedDfsVertex<DfsEdgeData, DfsEdgeData.Factory>> vertices = 
+		HashMap<Character, DirectedDfsVertex<DfsEdgeData>> vertices = 
 				setUpSmallCLRSGraph();
-		assertFalse("Graph contains a cycle", new EdgeTypeDepthFirstSearch<DfsEdgeData, DirectedDfsVertex<DfsEdgeData, 
-				DfsEdgeData.Factory>>(graph).search());
+		assertFalse("Graph contains a cycle", new EdgeTypeDepthFirstSearch<DfsEdgeData, 
+				DirectedDfsVertex<DfsEdgeData>>(graph).search());
 		// all vertices are black
 		for (char i = 'u'; i <= 'z'; i++) {
 			assertEquals("Vertex is black", Color.BLACK, vertices.get(i).getColor());
@@ -50,9 +50,9 @@ public class EdgeTypeDepthFirstSearchTest {
 	 */
 	@Test
 	public void testBiggerCircularGraph() {
-		ArrayList<DirectedDfsVertex<DfsEdgeData, DfsEdgeData.Factory>> vertices = setUpBiggerCircularGraph();
-		assertFalse("Graph is not acyclic", new EdgeTypeDepthFirstSearch<DfsEdgeData, DirectedDfsVertex<DfsEdgeData, 
-				DfsEdgeData.Factory>>(graph).search());		
+		ArrayList<DirectedDfsVertex<DfsEdgeData>> vertices = setUpBiggerCircularGraph();
+		assertFalse("Graph is not acyclic", new EdgeTypeDepthFirstSearch<DfsEdgeData, 
+				DirectedDfsVertex<DfsEdgeData>>(graph).search());		
 		//vertex first discovered will be vertex last finished in this case
 		int indexOfFirstDiscovery = -1;
 		for (int i = 0; i < CIRCULAR_GRAPH_SIZE; i++) {
@@ -77,23 +77,22 @@ public class EdgeTypeDepthFirstSearchTest {
 	 */
 	@Test
 	public void testAcyclicGraph() {
-		ArrayList<DirectedDfsVertex<DfsEdgeData, DfsEdgeData.Factory>> vertices = setUpBiggerCircularGraph();
+		ArrayList<DirectedDfsVertex<DfsEdgeData>> vertices = setUpBiggerCircularGraph();
 		// break the cycle by clearing 1 adjacency list
 		vertices.get(0).clearAdjacencies();
-		assertTrue("Graph is acyclic", new EdgeTypeDepthFirstSearch<DfsEdgeData, DirectedDfsVertex<DfsEdgeData, 
-				DfsEdgeData.Factory>>(graph).search());
+		assertTrue("Graph is acyclic", new EdgeTypeDepthFirstSearch<DfsEdgeData, 
+				DirectedDfsVertex<DfsEdgeData>>(graph).search());
 	}
 	/**
 	 * Graph from CLRS, p. 605
 	 */
-	private HashMap<Character, DirectedDfsVertex<DfsEdgeData, DfsEdgeData.Factory>> setUpSmallCLRSGraph() {
-		HashMap<Character, DirectedDfsVertex<DfsEdgeData, DfsEdgeData.Factory>> vertices = 
-				new HashMap<Character, DirectedDfsVertex<DfsEdgeData, DfsEdgeData.Factory>>();
+	private HashMap<Character, DirectedDfsVertex<DfsEdgeData>> setUpSmallCLRSGraph() {
+		HashMap<Character, DirectedDfsVertex<DfsEdgeData>> vertices = 
+				new HashMap<Character, DirectedDfsVertex<DfsEdgeData>>();
 		for (char i = 'u'; i <= 'z'; i++) {
-			vertices.put(i, new DirectedDfsVertex<DfsEdgeData, 
-					DfsEdgeData.Factory>(DfsEdgeData.Factory.INSTANCE));
+			vertices.put(i, new DirectedDfsVertex<DfsEdgeData>(DfsEdgeData.Factory.INSTANCE));
 		}
-		graph = new DfsGraph<DfsEdgeData, DfsEdgeData.Factory>(vertices.values());
+		graph = new DfsGraph<DfsEdgeData>(vertices.values());
 		vertices.get('u').addAdjacency(vertices.get('v'));
 		vertices.get('u').addAdjacency(vertices.get('x'));
 		vertices.get('v').addAdjacency(vertices.get('y'));
@@ -104,14 +103,14 @@ public class EdgeTypeDepthFirstSearchTest {
 		vertices.get('z').addAdjacency(vertices.get('z'));
 		return vertices;
 	}
-	private ArrayList<DirectedDfsVertex<DfsEdgeData, DfsEdgeData.Factory>> setUpBiggerCircularGraph() {
-		ArrayList<DirectedDfsVertex<DfsEdgeData, DfsEdgeData.Factory>> vertices = 
-				new ArrayList<DirectedDfsVertex<DfsEdgeData, DfsEdgeData.Factory>>(CIRCULAR_GRAPH_SIZE);
+	private ArrayList<DirectedDfsVertex<DfsEdgeData>> setUpBiggerCircularGraph() {
+		ArrayList<DirectedDfsVertex<DfsEdgeData>> vertices = 
+				new ArrayList<DirectedDfsVertex<DfsEdgeData>>(CIRCULAR_GRAPH_SIZE);
 		for (int i = 0; i < CIRCULAR_GRAPH_SIZE; i++) {
 			// vertex label will be the same as index in the array
-			vertices.add(new DirectedDfsVertex<DfsEdgeData, DfsEdgeData.Factory>(DfsEdgeData.Factory.INSTANCE));
+			vertices.add(new DirectedDfsVertex<DfsEdgeData>(DfsEdgeData.Factory.INSTANCE));
 		}
-		graph = new DfsGraph<DfsEdgeData, DfsEdgeData.Factory>(vertices);
+		graph = new DfsGraph<DfsEdgeData>(vertices);
 		for (int i = 0; i < CIRCULAR_GRAPH_SIZE - 1; i++) {
 			vertices.get(i).addAdjacency(vertices.get(i + 1));
 		}

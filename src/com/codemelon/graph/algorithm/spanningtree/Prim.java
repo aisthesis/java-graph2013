@@ -4,7 +4,6 @@ import java.util.PriorityQueue;
 import java.util.Set;
 
 import com.codemelon.graph.common.Color;
-import com.codemelon.graph.edge.EdgeDataFactory;
 import com.codemelon.graph.edge.SpanningTreeEdgeData;
 import com.codemelon.graph.graph.UndirectedWeightedEdgeGraph;
 import com.codemelon.graph.graph.VertexResetter;
@@ -33,11 +32,11 @@ import com.codemelon.graph.vertex.ChildVertex;
  * @my.created Dec 24, 2012
  * @my.edited Dec 24, 2012
  */
-public class Prim<E extends SpanningTreeEdgeData, U extends EdgeDataFactory<E>, V extends UndirectedPrimVertex<E, U>> {
-	private UndirectedWeightedEdgeGraph<E, U, V> graph;
+public class Prim<E extends SpanningTreeEdgeData, V extends UndirectedPrimVertex<E>> {
+	private UndirectedWeightedEdgeGraph<E, V> graph;
 	private PriorityQueue<V> queue;
 	
-	public Prim(UndirectedWeightedEdgeGraph<E, U, V> graph) {
+	public Prim(UndirectedWeightedEdgeGraph<E, V> graph) {
 		this.graph = graph;
 		queue = null;
 	}

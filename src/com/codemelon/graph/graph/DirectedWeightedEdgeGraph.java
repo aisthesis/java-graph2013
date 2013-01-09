@@ -17,7 +17,7 @@ import com.codemelon.graph.vertex.EdgeWeightVertex;
  * @my.edited Dec 23, 2012
  */
 public class DirectedWeightedEdgeGraph<E extends EdgeWeightData, U extends EdgeDataFactory<E>, 
-		V extends DirectedEdgeDataVertex<E, U> & EdgeWeightVertex<E>> extends DirectedEdgeDataGraph<E, U, V>
+		V extends DirectedEdgeDataVertex<E> & EdgeWeightVertex<E>> extends DirectedEdgeDataGraph<E, V>
 		implements WeightedEdgeGraph {
 	private double weightEpsilon;
 	

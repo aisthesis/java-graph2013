@@ -20,18 +20,15 @@ import com.codemelon.graph.graph.DirectedEdgeDataGraph;
  */
 public class DirectedEdgeDataVertexTest {
 	private static final int VERTICES_IN_TEST_GRAPH = 10;
-	private HashMap<Integer, DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>> vertices;
+	private HashMap<Integer, DirectedEdgeDataVertex<DfsEdgeData>> vertices;
 	
 	@Before
 	public void setUp() {
-		vertices = new HashMap<Integer, DirectedEdgeDataVertex<DfsEdgeData, 
-				DfsEdgeData.Factory>>(VERTICES_IN_TEST_GRAPH);
+		vertices = new HashMap<Integer, DirectedEdgeDataVertex<DfsEdgeData>>(VERTICES_IN_TEST_GRAPH);
 		for (int i = 0; i < VERTICES_IN_TEST_GRAPH; i++) {
-			vertices.put(i, new DirectedEdgeDataVertex<DfsEdgeData, 
-					DfsEdgeData.Factory>(DfsEdgeData.Factory.INSTANCE));
+			vertices.put(i, new DirectedEdgeDataVertex<DfsEdgeData>(DfsEdgeData.Factory.INSTANCE));
 		}
-		new DirectedEdgeDataGraph<DfsEdgeData, DfsEdgeData.Factory, 
-				DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>>(vertices.values());
+		new DirectedEdgeDataGraph<DfsEdgeData, DirectedEdgeDataVertex<DfsEdgeData>>(vertices.values());
 		vertices.get(0).addAdjacency(vertices.get(1));
 	}
 	@After
@@ -72,7 +69,7 @@ public class DirectedEdgeDataVertexTest {
 	 */
 	@Test(expected=IllegalArgumentException.class)
 	public void testAddFromDifferentGraph() {
-		Vertex v = new DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>(DfsEdgeData.Factory.INSTANCE);
+		Vertex v = new DirectedEdgeDataVertex<DfsEdgeData>(DfsEdgeData.Factory.INSTANCE);
 		vertices.get(2).addAdjacency(v);
 	}
 

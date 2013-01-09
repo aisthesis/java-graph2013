@@ -9,16 +9,16 @@ import com.codemelon.graph.edge.SpanningTreeEdgeData;
  * supports edge color and edge weight.
  * @author Marshall Farrier
  * @my.created Dec 22, 2012
- * @my.edited Dec 22, 2012
+ * @my.edited Jan 08, 2013
  */
-public class UndirectedKruskalVertex<E extends SpanningTreeEdgeData, U extends EdgeDataFactory<E>> 
-		extends UndirectedEdgeDataVertex<E, U> implements KruskalVertex<E> {
+public class UndirectedKruskalVertex<E extends SpanningTreeEdgeData> 
+		extends UndirectedEdgeDataVertex<E> implements KruskalVertex<E> {
 
 	/**
 	 * Construct vertex from a factory for building appropriate EdgeData objects.
 	 * @param edgeDataFactory factory to use for constructing new EdgeData objects
 	 */
-	public UndirectedKruskalVertex(U edgeDataFactory) {
+	public UndirectedKruskalVertex(EdgeDataFactory<E> edgeDataFactory) {
 		super(edgeDataFactory);
 	}
 

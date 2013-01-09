@@ -16,7 +16,7 @@ import com.codemelon.graph.vertex.Vertex;
  * @my.created Dec 20, 2012
  * @my.edited Dec 20, 2012
  */
-public class UndirectedWeightedEdge<E extends EdgeWeightData, V extends UndirectedEdgeDataVertex<E, ?> & EdgeWeightVertex<E>> {
+public class UndirectedWeightedEdge<E extends EdgeWeightData, V extends UndirectedEdgeDataVertex<E> & EdgeWeightVertex<E>> {
 	private V from;
 	private V to;
 	/**

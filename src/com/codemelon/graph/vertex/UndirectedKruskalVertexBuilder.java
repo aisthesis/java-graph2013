@@ -8,11 +8,11 @@ import com.codemelon.graph.edge.SpanningTreeEdgeData;
  * @my.created Dec 24, 2012
  * @my.edited Dec 24, 2012
  */
-public class UndirectedKruskalVertexBuilder<E extends SpanningTreeEdgeData, U extends EdgeDataFactory<E>>
-		implements VertexFactory<UndirectedKruskalVertex<E, U>>{
-	private U edgeDataFactory;
+public class UndirectedKruskalVertexBuilder<E extends SpanningTreeEdgeData>
+		implements VertexFactory<UndirectedKruskalVertex<E>>{
+	private EdgeDataFactory<E> edgeDataFactory;
 	
-	public UndirectedKruskalVertexBuilder(U edgeDataFactory) {
+	public UndirectedKruskalVertexBuilder(EdgeDataFactory<E> edgeDataFactory) {
 		this.edgeDataFactory = edgeDataFactory;
 	}
 
@@ -20,7 +20,7 @@ public class UndirectedKruskalVertexBuilder<E extends SpanningTreeEdgeData, U ex
 	 * @see com.codemelon.graph.vertex.VertexFactory#newVertex()
 	 */
 	@Override
-	public UndirectedKruskalVertex<E, U> newVertex() {
-		return new UndirectedKruskalVertex<E, U>(edgeDataFactory);
+	public UndirectedKruskalVertex<E> newVertex() {
+		return new UndirectedKruskalVertex<E>(edgeDataFactory);
 	}
 }

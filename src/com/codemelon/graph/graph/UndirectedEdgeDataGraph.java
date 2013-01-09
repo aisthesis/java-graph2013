@@ -3,7 +3,6 @@ package com.codemelon.graph.graph;
 import java.util.Collection;
 import java.util.Iterator;
 
-import com.codemelon.graph.edge.EdgeDataFactory;
 import com.codemelon.graph.vertex.UndirectedEdgeDataVertex;
 
 /**
@@ -14,7 +13,7 @@ import com.codemelon.graph.vertex.UndirectedEdgeDataVertex;
  * @my.created Dec 16, 2012
  * @my.edited Dec 16, 2012
  */
-public class UndirectedEdgeDataGraph<E, U extends EdgeDataFactory<E>, V extends UndirectedEdgeDataVertex<E, U>> 
+public class UndirectedEdgeDataGraph<E, V extends UndirectedEdgeDataVertex<E>> 
 		extends AbstractGraph<V> {
 	/**
 	 * Initialize graph to a default initial capacity of 16 vertices

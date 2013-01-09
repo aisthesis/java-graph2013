@@ -2,7 +2,6 @@ package com.codemelon.graph.graph;
 
 import java.util.Collection;
 
-import com.codemelon.graph.edge.EdgeDataFactory;
 import com.codemelon.graph.edge.SpanningTreeEdgeData;
 import com.codemelon.graph.vertex.UndirectedKruskalVertex;
 
@@ -13,8 +12,8 @@ import com.codemelon.graph.vertex.UndirectedKruskalVertex;
  * @my.created Dec 22, 2012
  * @my.edited Dec 22, 2012
  */
-public class KruskalGraph<E extends SpanningTreeEdgeData, U extends EdgeDataFactory<E>> 
-		extends UndirectedWeightedEdgeGraph<E, U, UndirectedKruskalVertex<E, U>> {
+public class KruskalGraph<E extends SpanningTreeEdgeData> 
+		extends UndirectedWeightedEdgeGraph<E, UndirectedKruskalVertex<E>> {
 
 	/**
 	 * Use the vertices in a collection as the initial vertices in the graph and
@@ -24,7 +23,7 @@ public class KruskalGraph<E extends SpanningTreeEdgeData, U extends EdgeDataFact
 	 * @param weightEpsilon weight epsilon to be used to determine weight equality
 	 * in this graph
 	 */
-	public KruskalGraph(Collection<UndirectedKruskalVertex<E, U>> vertices,
+	public KruskalGraph(Collection<UndirectedKruskalVertex<E>> vertices,
 			double weightEpsilon) {
 		super(vertices, weightEpsilon);
 	}
@@ -59,7 +58,7 @@ public class KruskalGraph<E extends SpanningTreeEdgeData, U extends EdgeDataFact
 	 * @param vertices collection of vertices that will make up the initial vertices
 	 * of the graph
 	 */
-	public KruskalGraph(Collection<UndirectedKruskalVertex<E, U>> vertices) {
+	public KruskalGraph(Collection<UndirectedKruskalVertex<E>> vertices) {
 		super(vertices);
 	}
 	/**

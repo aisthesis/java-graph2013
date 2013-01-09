@@ -20,20 +20,19 @@ import com.codemelon.graph.vertex.DirectedEdgeDataVertex;
  */
 public class DirectedEdgeDataGraphTest {
 	private static final int VERTICES_IN_TEST_GRAPH = 1000;
-	private HashMap<Integer, DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>> vertices;
-	private DirectedEdgeDataGraph<DfsEdgeData, DfsEdgeData.Factory, 
-			DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>> graph;
+	private HashMap<Integer, DirectedEdgeDataVertex<DfsEdgeData>> vertices;
+	private DirectedEdgeDataGraph<DfsEdgeData, 
+			DirectedEdgeDataVertex<DfsEdgeData>> graph;
 	
 	@Before
 	public void setUp() {
 		vertices = new HashMap<Integer, 
-				DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>>(VERTICES_IN_TEST_GRAPH);
+				DirectedEdgeDataVertex<DfsEdgeData>>(VERTICES_IN_TEST_GRAPH);
 		for (int i = 0; i < VERTICES_IN_TEST_GRAPH; i++) {
-			vertices.put(i, new DirectedEdgeDataVertex<DfsEdgeData, 
-					DfsEdgeData.Factory>(DfsEdgeData.Factory.INSTANCE));
+			vertices.put(i, new DirectedEdgeDataVertex<DfsEdgeData>(DfsEdgeData.Factory.INSTANCE));
 		}
-		graph = new DirectedEdgeDataGraph<DfsEdgeData, DfsEdgeData.Factory, 
-				DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>>(vertices.values());
+		graph = new DirectedEdgeDataGraph<DfsEdgeData, 
+				DirectedEdgeDataVertex<DfsEdgeData>>(vertices.values());
 		vertices.get(0).addAdjacency(vertices.get(1));
 	}
 	@After
@@ -55,12 +54,12 @@ public class DirectedEdgeDataGraphTest {
 	 */
 	@Test
 	public void testDirectedEdgeDataGraph() {
-		graph = new DirectedEdgeDataGraph<DfsEdgeData, DfsEdgeData.Factory, 
-				DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>>();
-		DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory> u = 
-				new DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>(DfsEdgeData.Factory.INSTANCE);
-		DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory> v = 
-				new DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>(DfsEdgeData.Factory.INSTANCE);
+		graph = new DirectedEdgeDataGraph<DfsEdgeData, 
+				DirectedEdgeDataVertex<DfsEdgeData>>();
+		DirectedEdgeDataVertex<DfsEdgeData> u = 
+				new DirectedEdgeDataVertex<DfsEdgeData>(DfsEdgeData.Factory.INSTANCE);
+		DirectedEdgeDataVertex<DfsEdgeData> v = 
+				new DirectedEdgeDataVertex<DfsEdgeData>(DfsEdgeData.Factory.INSTANCE);
 		graph.addVertex(u);
 		graph.addVertex(v);
 		u.addAdjacency(v);
@@ -75,12 +74,12 @@ public class DirectedEdgeDataGraphTest {
 	 */
 	@Test
 	public void testDirectedEdgeDataGraphInt() {
-		graph = new DirectedEdgeDataGraph<DfsEdgeData, DfsEdgeData.Factory, 
-				DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>>(12);
-		DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory> u = 
-				new DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>(DfsEdgeData.Factory.INSTANCE);
-		DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory> v = 
-				new DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>(DfsEdgeData.Factory.INSTANCE);
+		graph = new DirectedEdgeDataGraph<DfsEdgeData, 
+				DirectedEdgeDataVertex<DfsEdgeData>>(12);
+		DirectedEdgeDataVertex<DfsEdgeData> u = 
+				new DirectedEdgeDataVertex<DfsEdgeData>(DfsEdgeData.Factory.INSTANCE);
+		DirectedEdgeDataVertex<DfsEdgeData> v = 
+				new DirectedEdgeDataVertex<DfsEdgeData>(DfsEdgeData.Factory.INSTANCE);
 		graph.addVertex(u);
 		graph.addVertex(v);
 		u.addAdjacency(v);
@@ -114,7 +113,7 @@ public class DirectedEdgeDataGraphTest {
 	 */
 	@Test
 	public void testGetVertices() {
-		Set<DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>> vertexSet = graph.getVertices();
+		Set<DirectedEdgeDataVertex<DfsEdgeData>> vertexSet = graph.getVertices();
 		for (int i = 0; i < VERTICES_IN_TEST_GRAPH; i++) {
 			assertTrue("Vertex contained in set", vertexSet.contains(vertices.get(i)));
 		}
@@ -125,7 +124,7 @@ public class DirectedEdgeDataGraphTest {
 	 */
 	@Test
 	public void testVertexIterator() {
-		Iterator<DirectedEdgeDataVertex<DfsEdgeData, DfsEdgeData.Factory>> it = graph.vertexIterator();
+		Iterator<DirectedEdgeDataVertex<DfsEdgeData>> it = graph.vertexIterator();
 		while (it.hasNext()) {
 			if (it.next() == vertices.get(0)) {
 				return;

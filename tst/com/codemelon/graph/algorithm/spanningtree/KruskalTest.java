@@ -23,16 +23,13 @@ import com.codemelon.graph.vertex.UndirectedKruskalVertexBuilder;
 public class KruskalTest {
 	private static final double CUSTOM_EPSILON = 0.001;
 	private static final double MAX_EPSILON_DIFF = 0.000000000000001;
-	private static final UndirectedKruskalVertexBuilder<SpanningTreeEdgeData, 
-			SpanningTreeEdgeData.Factory> VERTEX_FACTORY = new UndirectedKruskalVertexBuilder<SpanningTreeEdgeData, 
-			SpanningTreeEdgeData.Factory>(SpanningTreeEdgeData.Factory.INSTANCE);
+	private static final UndirectedKruskalVertexBuilder<SpanningTreeEdgeData> VERTEX_FACTORY = 
+			new UndirectedKruskalVertexBuilder<SpanningTreeEdgeData>(SpanningTreeEdgeData.Factory.INSTANCE);
 	
-	private UndirectedWeightedEdgeGraph<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory,
-			UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>> graph;
-	private Kruskal<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory,
-			UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>> kruskal;
-	private HashMap<Character, UndirectedKruskalVertex<SpanningTreeEdgeData, 
-			SpanningTreeEdgeData.Factory>> vertices;
+	private UndirectedWeightedEdgeGraph<SpanningTreeEdgeData,
+			UndirectedKruskalVertex<SpanningTreeEdgeData>> graph;
+	private Kruskal<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData>> kruskal;
+	private HashMap<Character, UndirectedKruskalVertex<SpanningTreeEdgeData>> vertices;
 	/**
 	 * Set up graph from CLRS, p. 632
 	 */
@@ -53,8 +50,8 @@ public class KruskalTest {
 	 */
 	@Test
 	public void testMarkEdges() {
-		kruskal = new Kruskal<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory,
-				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(graph, null);
+		kruskal = new Kruskal<SpanningTreeEdgeData,
+				UndirectedKruskalVertex<SpanningTreeEdgeData>>(graph, null);
 		kruskal.markEdges();
 		assertEquals("Edge a-b marked", Color.BLACK, vertices.get('a').getEdgeColor(vertices.get('b')));
 		assertEquals("Edge h-g marked", Color.BLACK, vertices.get('h').getEdgeColor(vertices.get('g')));
@@ -75,12 +72,12 @@ public class KruskalTest {
 	 */
 	@Test
 	public void testGenerateTree() {
-		kruskal = new Kruskal<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory,
-				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(graph, VERTEX_FACTORY);
-		UndirectedWeightedEdgeGraph<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory,
-		UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>> spanningTree = kruskal.generateTree();
-		Map<UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>,
-				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>> vertexMap = kruskal.getVertexMap();
+		kruskal = new Kruskal<SpanningTreeEdgeData,
+				UndirectedKruskalVertex<SpanningTreeEdgeData>>(graph, VERTEX_FACTORY);
+		UndirectedWeightedEdgeGraph<SpanningTreeEdgeData,
+		UndirectedKruskalVertex<SpanningTreeEdgeData>> spanningTree = kruskal.generateTree();
+		Map<UndirectedKruskalVertex<SpanningTreeEdgeData>,
+				UndirectedKruskalVertex<SpanningTreeEdgeData>> vertexMap = kruskal.getVertexMap();
 		assertTrue("Edge a-b in graph", spanningTree.containsEdge(vertexMap.get(vertices.get('a')),
 				vertexMap.get(vertices.get('b'))));
 		assertTrue("a-b copy has correct weight", spanningTree.areEqualWeights(4.0, 
@@ -129,10 +126,10 @@ public class KruskalTest {
 	 */
 	@Test(expected=IllegalStateException.class)
 	public void testGetVertexMap() {
-		kruskal = new Kruskal<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory,
-				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(graph, VERTEX_FACTORY);
-		Map<UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>,
-				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>> vertexMap = kruskal.getVertexMap();
+		kruskal = new Kruskal<SpanningTreeEdgeData,
+				UndirectedKruskalVertex<SpanningTreeEdgeData>>(graph, VERTEX_FACTORY);
+		Map<UndirectedKruskalVertex<SpanningTreeEdgeData>,
+				UndirectedKruskalVertex<SpanningTreeEdgeData>> vertexMap = kruskal.getVertexMap();
 		vertexMap.get(vertices.get('a'));
 	}
 
@@ -140,14 +137,12 @@ public class KruskalTest {
 	 * Graph from CLRS, p. 596
 	 */
 	private void setUpCLRSGraph() {
-		vertices = new HashMap<Character, UndirectedKruskalVertex<SpanningTreeEdgeData, 
-				SpanningTreeEdgeData.Factory>>();
+		vertices = new HashMap<Character, UndirectedKruskalVertex<SpanningTreeEdgeData>>();
 		for (char i = 'a'; i <= 'i'; i++) {
-			vertices.put(i, new UndirectedKruskalVertex<SpanningTreeEdgeData, 
-					SpanningTreeEdgeData.Factory>(SpanningTreeEdgeData.Factory.INSTANCE));
+			vertices.put(i, new UndirectedKruskalVertex<SpanningTreeEdgeData>(SpanningTreeEdgeData.Factory.INSTANCE));
 		}
-		graph = new UndirectedWeightedEdgeGraph<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory,
-				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(vertices.values(),
+		graph = new UndirectedWeightedEdgeGraph<SpanningTreeEdgeData,
+				UndirectedKruskalVertex<SpanningTreeEdgeData>>(vertices.values(),
 				CUSTOM_EPSILON);
 		vertices.get('a').addAdjacency(vertices.get('b'));
 		vertices.get('a').setEdgeWeight(vertices.get('b'), 4.0);

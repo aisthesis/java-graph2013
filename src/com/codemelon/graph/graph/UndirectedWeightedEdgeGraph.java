@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import com.codemelon.graph.edge.EdgeDataFactory;
 import com.codemelon.graph.edge.EdgeWeightData;
 import com.codemelon.graph.edge.UndirectedWeightedEdge;
 import com.codemelon.graph.vertex.EdgeWeightVertex;
@@ -21,9 +20,9 @@ import com.codemelon.graph.vertex.Vertex;
  * @my.created Dec 23, 2012
  * @my.edited Dec 23, 2012
  */
-public class UndirectedWeightedEdgeGraph<E extends EdgeWeightData, U extends EdgeDataFactory<E>, 
-		V extends UndirectedEdgeDataVertex<E, U> & EdgeWeightVertex<E>> extends
-		UndirectedEdgeDataGraph<E, U, V> implements WeightedEdgeGraph {
+public class UndirectedWeightedEdgeGraph<E extends EdgeWeightData, 
+		V extends UndirectedEdgeDataVertex<E> & EdgeWeightVertex<E>> extends
+		UndirectedEdgeDataGraph<E, V> implements WeightedEdgeGraph {
 	private double weightEpsilon;
 	
 	/**

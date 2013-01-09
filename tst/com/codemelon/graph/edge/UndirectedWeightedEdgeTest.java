@@ -22,18 +22,16 @@ import com.codemelon.graph.vertex.UndirectedKruskalVertex;
 public class UndirectedWeightedEdgeTest {
 	private static final double CUSTOM_WEIGHT = 2.71828;
 	private static final int VERTICES_IN_TEST_GRAPH = 10;
-	private HashMap<Integer, UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>> vertices;
-	private KruskalGraph<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory> graph;
+	private HashMap<Integer, UndirectedKruskalVertex<SpanningTreeEdgeData>> vertices;
+	private KruskalGraph<SpanningTreeEdgeData> graph;
 
 	@Before
 	public void setUp() {
-		vertices = new HashMap<Integer, UndirectedKruskalVertex<SpanningTreeEdgeData, 
-				SpanningTreeEdgeData.Factory>>(VERTICES_IN_TEST_GRAPH);
+		vertices = new HashMap<Integer, UndirectedKruskalVertex<SpanningTreeEdgeData>>(VERTICES_IN_TEST_GRAPH);
 		for (int i = 0; i < VERTICES_IN_TEST_GRAPH; i++) {
-			vertices.put(i, new UndirectedKruskalVertex<SpanningTreeEdgeData, 
-					SpanningTreeEdgeData.Factory>(SpanningTreeEdgeData.Factory.INSTANCE));
+			vertices.put(i, new UndirectedKruskalVertex<SpanningTreeEdgeData>(SpanningTreeEdgeData.Factory.INSTANCE));
 		}
-		graph = new KruskalGraph<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>(vertices.values());
+		graph = new KruskalGraph<SpanningTreeEdgeData>(vertices.values());
 		vertices.get(0).addAdjacency(vertices.get(1));
 		vertices.get(0).setEdgeWeight(vertices.get(1), CUSTOM_WEIGHT);
 		vertices.get(2).addAdjacency(vertices.get(3));
@@ -57,13 +55,10 @@ public class UndirectedWeightedEdgeTest {
 	public void testUndirectedWeightedEdgeNullGraph() {
 		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage(JUnitMatchers.containsString("does not exist"));
-		UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory> u = new UndirectedKruskalVertex<SpanningTreeEdgeData, 
-				SpanningTreeEdgeData.Factory>(SpanningTreeEdgeData.Factory.INSTANCE);
-		UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory> v = new UndirectedKruskalVertex<SpanningTreeEdgeData, 
-				SpanningTreeEdgeData.Factory>(SpanningTreeEdgeData.Factory.INSTANCE);
-		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
-				SpanningTreeEdgeData.Factory>> e = new UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
-				SpanningTreeEdgeData.Factory>>(u, v);
+		UndirectedKruskalVertex<SpanningTreeEdgeData> u = new UndirectedKruskalVertex<SpanningTreeEdgeData>(SpanningTreeEdgeData.Factory.INSTANCE);
+		UndirectedKruskalVertex<SpanningTreeEdgeData> v = new UndirectedKruskalVertex<SpanningTreeEdgeData>(SpanningTreeEdgeData.Factory.INSTANCE);
+		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData>> e = 
+				new UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData>>(u, v);
 		e.from();	
 	}
 	/**
@@ -74,16 +69,14 @@ public class UndirectedWeightedEdgeTest {
 	public void testUndirectedWeightedEdgeDifferentGraphs() {
 		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage(JUnitMatchers.containsString("does not exist"));
-		UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory> u = new UndirectedKruskalVertex<SpanningTreeEdgeData, 
-				SpanningTreeEdgeData.Factory>(SpanningTreeEdgeData.Factory.INSTANCE);
-		KruskalGraph<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory> g2 = 
-				new KruskalGraph<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>();
+		UndirectedKruskalVertex<SpanningTreeEdgeData> u = new UndirectedKruskalVertex<SpanningTreeEdgeData>(SpanningTreeEdgeData.Factory.INSTANCE);
+		KruskalGraph<SpanningTreeEdgeData> g2 = 
+				new KruskalGraph<SpanningTreeEdgeData>();
 		g2.addVertex(u);
 		assertEquals("u belongs to g2", g2, u.getGraph());
 		assertEquals("0 vertex belongs to graph", graph, vertices.get(0).getGraph());
-		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
-				SpanningTreeEdgeData.Factory>> e = new UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
-				SpanningTreeEdgeData.Factory>>(u, vertices.get(0));
+		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData>> e = 
+				new UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData>>(u, vertices.get(0));
 		e.from();		
 	}
 	/**
@@ -95,9 +88,9 @@ public class UndirectedWeightedEdgeTest {
 	public void testUndirectedWeightedEdgeNoSuchEdge() {
 		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage(JUnitMatchers.containsString("does not exist"));
-		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
-				SpanningTreeEdgeData.Factory>> e = new UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
-				SpanningTreeEdgeData.Factory>>(vertices.get(2), vertices.get(0));
+		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData>> e = 
+				new UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData>>(vertices.get(2), 
+				vertices.get(0));
 		e.from();
 	}
 	/**
@@ -105,9 +98,9 @@ public class UndirectedWeightedEdgeTest {
 	 */
 	@Test
 	public void testFrom() {
-		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
-				SpanningTreeEdgeData.Factory>> e = new UndirectedWeightedEdge<SpanningTreeEdgeData, 
-				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(vertices.get(1), vertices.get(0));
+		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData>> e 
+				= new UndirectedWeightedEdge<SpanningTreeEdgeData, 
+				UndirectedKruskalVertex<SpanningTreeEdgeData>>(vertices.get(1), vertices.get(0));
 		assertEquals("correct tail", vertices.get(1), e.from());
 	}
 
@@ -116,9 +109,9 @@ public class UndirectedWeightedEdgeTest {
 	 */
 	@Test
 	public void testTo() {
-		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
-				SpanningTreeEdgeData.Factory>> e = new UndirectedWeightedEdge<SpanningTreeEdgeData, 
-				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(vertices.get(0), vertices.get(1));
+		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData>> e = 
+				new UndirectedWeightedEdge<SpanningTreeEdgeData, 
+				UndirectedKruskalVertex<SpanningTreeEdgeData>>(vertices.get(0), vertices.get(1));
 		assertEquals("correct head", vertices.get(1), e.to());
 	}
 
@@ -127,9 +120,9 @@ public class UndirectedWeightedEdgeTest {
 	 */
 	@Test
 	public void testWeight() {
-		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
-				SpanningTreeEdgeData.Factory>> e = new UndirectedWeightedEdge<SpanningTreeEdgeData, 
-				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(vertices.get(1), vertices.get(0));
+		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData>> e = 
+				new UndirectedWeightedEdge<SpanningTreeEdgeData, 
+				UndirectedKruskalVertex<SpanningTreeEdgeData>>(vertices.get(1), vertices.get(0));
 		assertTrue("correct weight", graph.areEqualWeights(e.weight(), 
 				vertices.get(0).getEdgeWeight(vertices.get(1))));
 	}
@@ -138,15 +131,15 @@ public class UndirectedWeightedEdgeTest {
 	 */
 	@Test
 	public void testEqualsObject() {
-		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
-				SpanningTreeEdgeData.Factory>> e1 = new UndirectedWeightedEdge<SpanningTreeEdgeData, 
-				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(vertices.get(1), vertices.get(0));
-		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
-				SpanningTreeEdgeData.Factory>> e2 = new UndirectedWeightedEdge<SpanningTreeEdgeData, 
-				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(vertices.get(0), vertices.get(1));
-		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData, 
-				SpanningTreeEdgeData.Factory>> e3 = new UndirectedWeightedEdge<SpanningTreeEdgeData, 
-				UndirectedKruskalVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(vertices.get(2), vertices.get(3));
+		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData>> e1 = 
+				new UndirectedWeightedEdge<SpanningTreeEdgeData, 
+				UndirectedKruskalVertex<SpanningTreeEdgeData>>(vertices.get(1), vertices.get(0));
+		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData>> e2 = 
+				new UndirectedWeightedEdge<SpanningTreeEdgeData, 
+				UndirectedKruskalVertex<SpanningTreeEdgeData>>(vertices.get(0), vertices.get(1));
+		UndirectedWeightedEdge<SpanningTreeEdgeData, UndirectedKruskalVertex<SpanningTreeEdgeData>> e3 = 
+				new UndirectedWeightedEdge<SpanningTreeEdgeData, 
+				UndirectedKruskalVertex<SpanningTreeEdgeData>>(vertices.get(2), vertices.get(3));
 		assertEquals("equals if same edge", e1, e1);
 		assertEquals("equals if same vertices but opposite direction", e1, e2);
 		assertFalse("Not equal if different edge", e1.equals(e3));

@@ -12,7 +12,7 @@ import com.codemelon.graph.edge.SpanningTreeEdgeData;
  * @my.created Dec 24, 2012
  * @my.edited Dec 24, 2012
  */
-public class UndirectedPrimVertex<E extends SpanningTreeEdgeData, U extends EdgeDataFactory<E>> extends UndirectedKruskalVertex<E, U>
+public class UndirectedPrimVertex<E extends SpanningTreeEdgeData> extends UndirectedKruskalVertex<E>
 		implements PrimVertex<E> {
 	private double weight;
 	private Color color;
@@ -24,7 +24,7 @@ public class UndirectedPrimVertex<E extends SpanningTreeEdgeData, U extends Edge
 	 * parent to null.
 	 * @param edgeDataFactory
 	 */
-	public UndirectedPrimVertex(U edgeDataFactory) {
+	public UndirectedPrimVertex(EdgeDataFactory<E> edgeDataFactory) {
 		super(edgeDataFactory);
 		this.weight = WeightedVertex.DEFAULT_WEIGHT;
 		this.color = Color.WHITE;

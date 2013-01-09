@@ -19,12 +19,11 @@ import com.codemelon.graph.vertex.UndirectedPrimVertex;
  * @my.edited Jan 1, 2013
  */
 public class PrimTest {
-	private UndirectedWeightedEdgeGraph<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory,
-			UndirectedPrimVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>> graph;
-	private Prim<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory,
-			UndirectedPrimVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>> prim;
-	private HashMap<Character, UndirectedPrimVertex<SpanningTreeEdgeData, 
-			SpanningTreeEdgeData.Factory>> vertices;
+	private UndirectedWeightedEdgeGraph<SpanningTreeEdgeData,
+			UndirectedPrimVertex<SpanningTreeEdgeData>> graph;
+	private Prim<SpanningTreeEdgeData,
+			UndirectedPrimVertex<SpanningTreeEdgeData>> prim;
+	private HashMap<Character, UndirectedPrimVertex<SpanningTreeEdgeData>> vertices;
 
 	@Before
 	public void setUp() {
@@ -43,8 +42,8 @@ public class PrimTest {
 	 */
 	@Test
 	public void testMarkEdges() {
-		prim = new Prim<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory,
-				UndirectedPrimVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(graph);
+		prim = new Prim<SpanningTreeEdgeData,
+				UndirectedPrimVertex<SpanningTreeEdgeData>>(graph);
 		for (char i = 'a'; i <= 'i'; i++) {
 			prim.markEdges(vertices.get(i));
 			assertEquals("Edge a-b marked", Color.BLACK, vertices.get('a').getEdgeColor(vertices.get('b')));
@@ -66,14 +65,12 @@ public class PrimTest {
 	 * Graph from CLRS, p. 596
 	 */
 	private void setUpCLRSGraph() {
-		vertices = new HashMap<Character, UndirectedPrimVertex<SpanningTreeEdgeData, 
-				SpanningTreeEdgeData.Factory>>();
+		vertices = new HashMap<Character, UndirectedPrimVertex<SpanningTreeEdgeData>>();
 		for (char i = 'a'; i <= 'i'; i++) {
-			vertices.put(i, new UndirectedPrimVertex<SpanningTreeEdgeData, 
-					SpanningTreeEdgeData.Factory>(SpanningTreeEdgeData.Factory.INSTANCE));
+			vertices.put(i, new UndirectedPrimVertex<SpanningTreeEdgeData>(SpanningTreeEdgeData.Factory.INSTANCE));
 		}
-		graph = new UndirectedWeightedEdgeGraph<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory,
-				UndirectedPrimVertex<SpanningTreeEdgeData, SpanningTreeEdgeData.Factory>>(vertices.values());
+		graph = new UndirectedWeightedEdgeGraph<SpanningTreeEdgeData,
+				UndirectedPrimVertex<SpanningTreeEdgeData>>(vertices.values());
 		vertices.get('a').addAdjacency(vertices.get('b'));
 		vertices.get('a').setEdgeWeight(vertices.get('b'), 4.0);
 		vertices.get('a').addAdjacency(vertices.get('h'));

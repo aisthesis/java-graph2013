@@ -9,13 +9,13 @@ import com.codemelon.graph.edge.EdgeDataFactory;
  * @my.created Dec 14, 2012
  * @my.edited Dec 14, 2012
  */
-public class UndirectedEdgeDataVertex<T, U extends EdgeDataFactory<T>> extends DirectedEdgeDataVertex<T, U> {
+public class UndirectedEdgeDataVertex<T> extends DirectedEdgeDataVertex<T> {
 
 	/**
 	 * Constructor from an EdgeDataFactory
 	 * @param edgeDataFactory factory to use for creating new EdgeData objects
 	 */
-	public UndirectedEdgeDataVertex(U edgeDataFactory) {
+	public UndirectedEdgeDataVertex(EdgeDataFactory<T> edgeDataFactory) {
 		super(edgeDataFactory);
 	}
 	/* (non-Javadoc)
@@ -31,7 +31,7 @@ public class UndirectedEdgeDataVertex<T, U extends EdgeDataFactory<T>> extends D
 		}
 		if (this.containsAdjacency(to)) { return false; }
 		super.addDirectedAdjacency(to);
-		((DirectedEdgeDataVertex<?, ?>) to).addDirectedAdjacency(this);
+		((DirectedEdgeDataVertex<?>) to).addDirectedAdjacency(this);
 		return true;
 	}
 	/* (non-Javadoc)
@@ -41,7 +41,7 @@ public class UndirectedEdgeDataVertex<T, U extends EdgeDataFactory<T>> extends D
 	public final boolean removeAdjacency(Vertex to) {
 		if (this.containsAdjacency(to)) {
 			super.removeDirectedAdjacency(to);
-			((DirectedEdgeDataVertex<?, ?>) to).removeDirectedAdjacency(this);
+			((DirectedEdgeDataVertex<?>) to).removeDirectedAdjacency(this);
 			return true;
 		}
 		return false;
@@ -53,7 +53,7 @@ public class UndirectedEdgeDataVertex<T, U extends EdgeDataFactory<T>> extends D
 	public final void clearAdjacencies() {
 		Set<? extends Vertex> adjacencies = super.getAdjacencies();
 		for (Vertex v : adjacencies) {
-			((DirectedEdgeDataVertex<?, ?>) v).removeDirectedAdjacency(this);
+			((DirectedEdgeDataVertex<?>) v).removeDirectedAdjacency(this);
 		}
 		super.clearAdjacencies();
 	}

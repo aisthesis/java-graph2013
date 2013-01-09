@@ -12,8 +12,8 @@ import com.codemelon.graph.edge.EdgeDataFactory;
  * @my.created Dec 16, 2012
  * @my.edited Dec 16, 2012
  */
-public class DirectedDfsVertex<E extends DfsEdgeData, U extends EdgeDataFactory<E>> 
-		extends DirectedEdgeDataVertex<E, U> implements EdgeTypeDfsVertex<E> {
+public class DirectedDfsVertex<E extends DfsEdgeData> 
+		extends DirectedEdgeDataVertex<E> implements EdgeTypeDfsVertex<E> {
 	private Color color;
 	private ChildVertex parent;
 	private int discoveryTime;
@@ -23,7 +23,7 @@ public class DirectedDfsVertex<E extends DfsEdgeData, U extends EdgeDataFactory<
 	 * Constructor from an EdgeDataFactory
 	 * @param edgeDataFactory factory to use for creating new EdgeData objects
 	 */
-	public DirectedDfsVertex(U edgeDataFactory) {
+	public DirectedDfsVertex(EdgeDataFactory<E> edgeDataFactory) {
 		super(edgeDataFactory);
 	}
 	/* (non-Javadoc)
