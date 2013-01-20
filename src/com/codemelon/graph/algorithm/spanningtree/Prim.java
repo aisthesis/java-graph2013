@@ -17,7 +17,7 @@ import com.codemelon.graph.vertex.EdgeWeightVertex;
 import com.codemelon.graph.vertex.ChildVertex;
 
 /**
- * Implementation of Kruskal's algorithm for growing a minimum spanning
+ * Implementation of Prim's algorithm for growing a minimum spanning
  * tree. Follows
  * <a href="http://mitpress.mit.edu/algorithms/">CLRS</a>, pp. 634ff.
  * In this implementation, the markEdges() method does 2 things:
