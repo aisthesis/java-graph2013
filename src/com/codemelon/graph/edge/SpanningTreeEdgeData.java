@@ -7,35 +7,18 @@ import com.codemelon.graph.common.Color;
  * @my.created Dec 22, 2012
  * @my.edited Dec 22, 2012
  */
-public class SpanningTreeEdgeData implements EdgeColorData, EdgeWeightData {
+public class SpanningTreeEdgeData extends ShortestPathEdgeData implements EdgeColorData {
 	private Color color;
-	private double weight;
 	
 	public SpanningTreeEdgeData() {
 		this(EdgeWeightData.DEFAULT_EDGE_WEIGHT, Color.WHITE);
 	}
 	
 	public SpanningTreeEdgeData(double weight, Color color) {
-		this.weight = weight;
+		super(weight);
 		this.color = color;
 	}
-
-	/* (non-Javadoc)
-	 * @see com.codemelon.graph.edge.EdgeWeightData#setWeight(double)
-	 */
-	@Override
-	public void setWeight(double weight) {
-		this.weight = weight;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.codemelon.graph.edge.EdgeWeightData#getWeight()
-	 */
-	@Override
-	public double getWeight() {
-		return weight;
-	}
-
+	
 	/* (non-Javadoc)
 	 * @see com.codemelon.graph.edge.EdgeColorData#setColor(com.codemelon.graph.common.Color)
 	 */
