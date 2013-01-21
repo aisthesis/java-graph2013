@@ -54,7 +54,7 @@ public class BellmanFord<E extends EdgeWeightData, V extends DirectedEdgeDataVer
 	 * @return true iff there is no negative-weight cycle reachable from s
 	 */
 	@SuppressWarnings("unchecked")
-	public boolean findShortestPaths(V s) {
+	public final boolean findShortestPaths(V s) {
 		PathUtils.initializeSingleSource(graph, s);
 		Iterator<V> it;
 		V u;

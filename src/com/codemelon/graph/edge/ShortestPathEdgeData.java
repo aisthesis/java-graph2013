@@ -47,4 +47,15 @@ public class ShortestPathEdgeData implements EdgeWeightData {
 		return weight;
 	}
 
+	public enum Factory implements EdgeDataFactory<ShortestPathEdgeData> {
+		INSTANCE;
+		
+		/**
+		 * Factory method for creating new ShortestPathEdgeData objects by calling the default constructor.
+		 */
+		@Override
+		public ShortestPathEdgeData newEdgeData() {
+			return new ShortestPathEdgeData();
+		}		
+	}
 }

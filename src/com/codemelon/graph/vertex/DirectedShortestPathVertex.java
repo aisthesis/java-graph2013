@@ -54,7 +54,7 @@ public class DirectedShortestPathVertex<E extends ShortestPathEdgeData> extends
 	 * @see com.codemelon.graph.vertex.ChildVertex#setParent(com.codemelon.graph.vertex.ChildVertex)
 	 */
 	@Override
-	public void setParent(ChildVertex parent) {
+	public final void setParent(ChildVertex parent) {
 		this.parent = parent;
 	}
 
@@ -62,7 +62,7 @@ public class DirectedShortestPathVertex<E extends ShortestPathEdgeData> extends
 	 * @see com.codemelon.graph.vertex.ChildVertex#getParent()
 	 */
 	@Override
-	public ChildVertex getParent() {
+	public final ChildVertex getParent() {
 		return parent;
 	}
 
@@ -70,7 +70,7 @@ public class DirectedShortestPathVertex<E extends ShortestPathEdgeData> extends
 	 * @see com.codemelon.graph.vertex.WeightedVertex#setWeight(double)
 	 */
 	@Override
-	public void setWeight(double weight) {
+	public final void setWeight(double weight) {
 		this.weight = weight;
 	}
 
@@ -78,7 +78,7 @@ public class DirectedShortestPathVertex<E extends ShortestPathEdgeData> extends
 	 * @see com.codemelon.graph.vertex.WeightedVertex#getWeight()
 	 */
 	@Override
-	public double getWeight() {
+	public final double getWeight() {
 		return weight;
 	}
 
