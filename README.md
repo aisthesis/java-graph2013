@@ -1,6 +1,6 @@
 java-graph2013
 =
-Git repository for an open-source Java graph library
+Git repository for a Java graph library
 started 12/13/2012
 
 Supersedes: https://github.com/aisthesis/java-graph2012
